@@ -1,11 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital – Demo</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --blue:#135fa8;
+      --navy:#1d3557;
+      --text:#34495e;
+      --muted:#6b7c93;
+      --red:#e53935;
+      --green:#2e7d32;
+      --light:#f7f9fc;
+      --field:#ffffff;
+      --border:#e6e9ef;
+      --shadow:0 6px 18px rgba(16,24,40,.08);
+      --container:1140px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+    img,svg{display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
+    .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
+    .menu{display:flex;gap:26px;color:#222}
+    .menu a{font-weight:500;font-size:14px;opacity:.85}
+    .menu a:hover{opacity:1}
+
+    /* Hero appointment block */
+    .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+    .hero h3{margin:0 0 10px;font-size:24px;letter-spacing:.3px}
+    .underline{width:72px;height:3px;background:#f04a3b;margin:6px 0 18px}
+    .card{background:transparent}
+    .form{display:grid;grid-template-columns:1fr;gap:16px}
+    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{font-size:13px;opacity:.95;margin-bottom:6px;display:block}
+    .field{width:100%;height:48px;border-radius:4px;border:1px solid #dfe3eb;background:var(--field);padding:0 14px;font-size:14px;color:#1f2937}
+    .select{appearance:none;background:
+      linear-gradient(45deg,transparent 50%,#9aa3b2 50%) right 14px center/9px 9px no-repeat,
+      linear-gradient(135deg,transparent 50%,#9aa3b2 50%) right 9px center/9px 9px no-repeat,
+      var(--field);
+      padding-right:38px
+    }
+    .actions{display:flex;gap:16px;align-items:center;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:4px;font-weight:600;border:0;cursor:pointer;box-shadow:var(--shadow)}
+    .btn-red{background:var(--red);color:#fff}
+    .btn-red:hover{filter:brightness(.95)}
+    .btn-green{background:var(--green);color:#fff}
+    .btn-green:hover{filter:brightness(.95)}
+    .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
+
+    /* Best Hospital section */
+    .features{padding:64px 0 84px;background:#fff}
+    .section-head{text-align:center;margin-bottom:30px}
+    .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
+    .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
+    .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
+    .icon-wrap{width:64px;height:64px;color:#d8433e;margin-bottom:16px}
+    .feature h4{margin:0 0 10px;font-size:20px;color:#2b3a50;font-weight:600}
+    .feature p{margin:0;color:var(--muted);line-height:1.8}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .row-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .section-head h2{font-size:34px}
+    }
+    @media (max-width: 620px){
+      .menu{display:none}
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-    
+
+  <!-- Header -->
+  <div class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        Hospital
+        <span class="logo-badge">+</span>
+      </div>
+      <nav class="menu">
+        <a href="#">Home</a>
+        <a href="#">Doctors</a>
+        <a href="#">Departments</a>
+        <a href="#">Gallery</a>
+        <a href="#">Services</a>
+        <a href="#">Events</a>
+        <a href="#">Pages</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Appointment / Schedules -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <!-- Check Schedules -->
+      <div class="card">
+        <h3>CHECK SCHEDULES</h3>
+        <div class="underline"></div>
+
+        <div class="form">
+          <div>
+            <label>Department's Name</label>
+            <select class="field select">
+              <option>Choose a Department</option>
+              <option>Cardiology</option>
+              <option>Neurology</option>
+              <option>Orthopedic</option>
+            </select>
+          </div>
+          <div>
+            <label>Doctor's Name</label>
+            <select class="field select">
+              <option>Choose a Doctor</option>
+              <option>Dr. A</option>
+              <option>Dr. B</option>
+              <option>Dr. C</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-red">VIEW SCHEDULE</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Appointment -->
+      <div class="card">
+        <h3>BOOK APPOINTMENT</h3>
+        <div class="underline"></div>
+
+        <div class="form">
+          <div class="row-2">
+            <div>
+              <label>Patient Name</label>
+              <input class="field" type="text" placeholder="">
+            </div>
+            <div>
+              <label>Phone Number</label>
+              <input class="field" type="tel" placeholder="">
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div>
+              <label>Email Address</label>
+              <input class="field" type="email" placeholder="">
+            </div>
+            <div>
+              <label>Choose Date</label>
+              <input class="field" type="date">
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div>
+              <label>Department</label>
+              <select class="field select">
+                <option>Pediatric</option>
+                <option>Cardiology</option>
+                <option>Orthopedic</option>
+              </select>
+            </div>
+            <div class="actions" style="align-items:end">
+              <button class="btn btn-green" style="width:180px">SUBMIT</button>
+            </div>
+          </div>
+
+          <p class="helper">Please fill out all of the fields correctly. Your records will be saved in our database securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Best Hospital In Town -->
+  <section class="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>BEST HOSPITAL IN TOWN</h2>
+        <p>When It Comes to Health Care</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 1 2 2v3a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v11a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v6a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2z"/></svg>
+          <h4>Powerful Theme Options</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a1 1 0 0 1 1 1v11H3V6a1 1 0 0 1 1-1zm-1 13h18v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1zm7-3h4a1 1 0 1 1 0 2H10a1 1 0 1 1 0-2z"/></svg>
+          <h4>Drag & Drop Page Builder</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2a1 1 0 0 1 .8 1.6l-8.6 12-3.1 1.1 1.1-3.1 8.6-12A1 1 0 0 1 19 2zM5 20h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2z"/></svg>
+          <h4>Easy to Customize</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12a2 2 0 0 1 2 2v16l-8-3-8 3V4a2 2 0 0 1 2-2z"/></svg>
+          <h4>Theme Documentation</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm0 6h10v10H7V8z"/></svg>
+          <h4>Years of Experience</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+
+        <article class="feature">
+          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 3v14h10V5H7zm4 14h2v1h-2v-1z"/></svg>
+          <h4>Responsive Layout</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
