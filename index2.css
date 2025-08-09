@@ -26,7 +26,8 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(9, 132, 120, 0.0);
+  /* background: rgba(9, 132, 120, 0.0); */
+  background: #18a092;
 }
 
 .nav {
@@ -64,7 +65,7 @@ img { max-width: 100%; display: block; }
 .hero {
   position: relative;
   min-height: 94vh;
-  overflow: hidden;
+  overflow: visible;
   background: #18a092; /* base teal close to reference */
 }
 
@@ -108,6 +109,7 @@ img { max-width: 100%; display: block; }
 
 .hero-content h1 {
   margin: 0 0 18px 0;
+ 
   font-size: clamp(36px, 6vw, 66px);
   line-height: 1.05;
   color: #ffffff;
@@ -150,7 +152,7 @@ img { max-width: 100%; display: block; }
 
 .hero-visual { position: relative; display: grid; place-items: end; }
 .hero-visual .doctor {
-  width: min(620px, 95%);
+  width: min(720px);
   transform: translateY(34px);
   filter: drop-shadow(0 22px 60px rgba(3, 37, 33, 0.38));
 }

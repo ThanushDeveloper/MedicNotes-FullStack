@@ -33,11 +33,13 @@ body {
 
 /* Header */
 .site-header {
-  background: #fff;
+  /* background: #fff; */
   border-bottom: 1px solid #eef2f7;
   position: sticky;
   top: 0;
   z-index: 10;
+  background: transparent;
+
 }
 
 .header-inner {
