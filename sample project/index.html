@@ -84,6 +84,60 @@
       .menu{display:none}
       .grid-3{grid-template-columns:1fr}
     }
+
+    /* Our Philosophy */
+    .philosophy{padding:60px 0;background:#fff}
+    .philosophy .space{height:10px}
+    .philosophy .panel-wrap{display:flex;justify-content:flex-end}
+    .philosophy .panel{background:var(--blue);color:#fff;border-radius:4px;padding:40px 42px;max-width:760px;box-shadow:var(--shadow)}
+    .philosophy .panel h3{margin:0 0 6px;font-size:34px;letter-spacing:.6px}
+    .philosophy .panel .sub{margin:0 0 18px;opacity:.95}
+    .philosophy .panel p{margin:0 0 18px;line-height:1.9;color:#e8f1fb}
+    .philosophy .panel .cta{margin-top:6px}
+    .btn-white{background:#fff;color:#1b2a41}
+    .btn-white:hover{filter:brightness(.98)}
+
+    /* Departments */
+    .departments{padding:60px 0;background:#fff}
+    .departments .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+    .dept-card{background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;box-shadow:0 1px 0 rgba(16,24,40,.02)}
+    .dept-card img{width:100%;height:190px;object-fit:cover}
+    .dept-body{padding:16px 18px}
+    .dept-title{margin:0 0 8px;font-weight:700;color:#135fa8}
+    .dept-text{margin:0;color:var(--muted);line-height:1.8}
+
+    /* Latest News */
+    .news{padding:70px 0;background:#f7f9fc}
+    .news .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .post{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:var(--shadow)}
+    .post img{width:100%;height:220px;object-fit:cover}
+    .post-body{padding:18px}
+    .post-meta{display:flex;gap:12px;font-size:12px;color:#7a8899;margin-bottom:10px}
+    .post-title{margin:0 0 10px;font-size:18px;color:#24364a;font-weight:700;line-height:1.4}
+    .post-excerpt{margin:0 0 14px;color:var(--muted);line-height:1.8}
+    .post-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding:12px 18px;background:#fcfdff}
+    .read-more{color:#e53935;font-weight:600}
+
+    /* Footer (down of latest news content) */
+    .site-footer{background:#1c2430;color:#c9d3df;padding:44px 0 26px;margin-top:20px}
+    .site-footer .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+   .foot-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+    .tag-list{display:flex;flex-wrap:wrap;gap:10px}
+    .tag{padding:6px 10px;border:1px solid #324253;border-radius:18px;font-size:12px;color:#d5dee9}
+    .copyright{border-top:1px solid #2a394b;margin-top:26px;padding-top:18px;font-size:13px;color:#a6b3c3;display:flex;justify-content:space-between;align-items:center}
+
+    @media (max-width: 1080px){
+      .departments .grid-4{grid-template-columns:1fr 1fr 1fr}
+      .news .posts{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 720px){
+      .departments .grid-4{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 560px){
+      .departments .grid-4{grid-template-columns:1fr}
+      .news .posts{grid-template-columns:1fr}
+      .philosophy .panel-wrap{justify-content:center}
+    }
   </style>
 </head>
 <body>
@@ -237,6 +291,181 @@
       </div>
     </div>
   </section>
+
+  <!-- Our Philosophy -->
+  <section class="philosophy">
+    <div class="container">
+      <div class="space"></div>
+      <div class="panel-wrap">
+        <div class="panel">
+          <h3>OUR PHILOSOPHY</h3>
+          <p class="sub">This is the subtitle for the heading</p>
+          <p>Patients have an important role to play at each stage of their care and the five safety tips will serve to encourage them to be more involved in their health care.</p>
+          <p>Patients can do a lot of small things to make their health-care experience as safe as possible.</p>
+          <p>Hospitals are places of recovery and healing but there are also safety risks for patients, such as infections, falls and medication errors that can happen despite our best efforts.</p>
+          <div class="cta">
+            <button class="btn btn-white">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hospital Departments -->
+  <section class="departments">
+    <div class="container">
+      <div class="section-head">
+        <h2>HOSPITAL DEPARTMENTS</h2>
+        <div class="underline" style="margin:10px auto 0"></div>
+      </div>
+      <div class="grid-4">
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1580281657527-47c149bbedd7?q=80&w=1200&auto=format&fit=crop" alt="Cardiology">
+          <div class="dept-body">
+            <h4 class="dept-title">Cardiology</h4>
+            <p class="dept-text">Here's the story of a lovely lady, who was bringing up three very lovely...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop" alt="Dental">
+          <div class="dept-body">
+            <h4 class="dept-title">Dental</h4>
+            <p class="dept-text">We never thought of findin' a place where we belong. Don't have to stand...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Neurologist">
+          <div class="dept-body">
+            <h4 class="dept-title">Neurologist</h4>
+            <p class="dept-text">You unlock this door with the key of imagination. Beyond it is another dimension...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1560582861-45f4d0d04d5c?q=80&w=1200&auto=format&fit=crop" alt="Pediatric">
+          <div class="dept-body">
+            <h4 class="dept-title">Pediatric</h4>
+            <p class="dept-text">One thousand years ago, superstition and the sword ruled. It was a time of...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1200&auto=format&fit=crop" alt="Pulmonary">
+          <div class="dept-body">
+            <h4 class="dept-title">Pulmonary</h4>
+            <p class="dept-text">Life is like a hurricane here in Duckburg. Race cars, lasers, aeroplanes - it's...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1498550744921-75f79806b8a7?q=80&w=1200&auto=format&fit=crop" alt="Traumatology">
+          <div class="dept-body">
+            <h4 class="dept-title">Traumatology</h4>
+            <p class="dept-text">Your tread must be light and sure, as though your path were upon rice...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Urology">
+          <div class="dept-body">
+            <h4 class="dept-title">Urology</h4>
+            <p class="dept-text">They're creepy and they're kooky, mysterious and spooky. They're all together ooky...</p>
+          </div>
+        </article>
+        <article class="dept-card">
+          <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Xray">
+          <div class="dept-body">
+            <h4 class="dept-title">Xray</h4>
+            <p class="dept-text">I bet we been together for a million years, And I bet we'll be...</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News -->
+  <section class="news">
+    <div class="container">
+      <div class="section-head">
+        <h2>LATEST NEWS</h2>
+        <div class="underline" style="margin:10px auto 0"></div>
+      </div>
+      <div class="posts">
+        <article class="post">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="Post 1">
+          <div class="post-body">
+            <div class="post-meta"><span>Health</span><span>•</span><span>Feb 12, 2025</span></div>
+            <h3 class="post-title">5 Safety Tips For Patients To Improve Care</h3>
+            <p class="post-excerpt">Patients can do a lot of small things to make their health-care experience as safe as possible and be more involved in their health care...</p>
+          </div>
+          <div class="post-footer">
+            <a class="read-more" href="#">Read More</a>
+            <span style="font-size:12px;color:#7a8899">12 Comments</span>
+          </div>
+        </article>
+        <article class="post">
+          <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Post 2">
+          <div class="post-body">
+            <div class="post-meta"><span>Wellness</span><span>•</span><span>Jan 29, 2025</span></div>
+            <h3 class="post-title">How To Prepare For Your Next Appointment</h3>
+            <p class="post-excerpt">From scheduling to follow-up, these practical steps help you get the most out of your visit while keeping you informed every step of the way...</p>
+          </div>
+          <div class="post-footer">
+            <a class="read-more" href="#">Read More</a>
+            <span style="font-size:12px;color:#7a8899">8 Comments</span>
+          </div>
+        </article>
+        <article class="post">
+          <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1200&auto=format&fit=crop" alt="Post 3">
+          <div class="post-body">
+            <div class="post-meta"><span>News</span><span>•</span><span>Jan 10, 2025</span></div>
+            <h3 class="post-title">Modern Imaging: What Patients Should Know</h3>
+            <p class="post-excerpt">Advancements in medical imaging improve diagnosis and outcomes. Here’s a quick overview of what to expect and how to prepare for scans...</p>
+          </div>
+          <div class="post-footer">
+            <a class="read-more" href="#">Read More</a>
+            <span style="font-size:12px;color:#7a8899">5 Comments</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (kept separate to not change the code format down of latest news content) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid-3">
+        <div>
+          <h4 class="foot-title">CATEGORIES</h4>
+          <ul class="foot-list">
+            <li>Blogs</li>
+            <li>Counseling</li>
+            <li>Health</li>
+            <li>Kids</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="foot-title">TAGS</h4>
+          <div class="tag-list">
+            <span class="tag">Beach</span>
+            <span class="tag">Health</span>
+            <span class="tag">Holiday</span>
+            <span class="tag">Information</span>
+            <span class="tag">Kids</span>
+            <span class="tag">Nature</span>
+            <span class="tag">Randomstuff</span>
+            <span class="tag">Rock</span>
+          </div>
+        </div>
+        <div>
+          <h4 class="foot-title">RECENT COMMENTS</h4>
+          <ul class="foot-list">
+            <li>Aziz Rahman on<br>My kinda people, my kinda place</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <span>© 2025 Hospital Plus.</span>
+        <span>Designed by ThemeWarrior</span>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
