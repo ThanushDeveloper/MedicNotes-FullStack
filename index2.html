@@ -167,5 +167,28 @@
         </div>
       </section>
     </main>
-  </body>
-</html>
+    
+    
+    
+    <script>
+      (function() {
+        var img = document.querySelector('.hero-visual .doctor');
+        if (!img) return;
+        var onIntersect = function(entries, obs){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+              img.classList.add('is-visible');
+              obs.disconnect();
+            }
+          });
+        };
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(onIntersect, { root: null, threshold: 0.3 });
+          io.observe(img);
+        } else {
+          img.classList.add('is-visible');
+        }
+      })();
+    </script>
+   </body>
+ </html>

@@ -150,12 +150,19 @@ img { max-width: 100%; display: block; }
 .chip-text strong { font-size: 14px; }
 .chip-text span { font-size: 13px; opacity: .9; }
 
-.hero-visual { position: relative; display: grid; place-items: end; }
-.hero-visual .doctor {
-  width: min(720px);
-  transform: translateY(34px);
-  filter: drop-shadow(0 22px 60px rgba(3, 37, 33, 0.38));
-}
+  .hero-visual { position: relative; display: grid; place-items: end; }
+  .hero-visual .doctor {
+  	width: min(720px);
+  	transform: translate(120px, 34px);
+  	opacity: 0;
+  	filter: drop-shadow(0 22px 60px rgba(3, 37, 33, 0.38));
+  	transition: transform 800ms ease-out, opacity 800ms ease-out;
+  	will-change: transform, opacity;
+  }
+  .hero-visual .doctor.is-visible {
+  	transform: translate(0, 34px);
+  	opacity: 1;
+  }
 /* Floating cards */
 .cards-wrap {
   position: absolute; left: 50%; bottom: -250px; transform: translateX(-50%);
