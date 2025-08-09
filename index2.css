@@ -64,7 +64,7 @@ img { max-width: 100%; display: block; }
 .hero {
   position: relative;
   min-height: 94vh;
-  overflow: hidden;
+  overflow: visible;
   background: #18a092; /* base teal close to reference */
 }
 
