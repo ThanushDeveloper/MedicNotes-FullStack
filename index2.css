@@ -231,3 +231,18 @@ img { max-width: 100%; display: block; }
 .svc-body h4 { margin: 0 0 6px; font-size: 18px; color: #0f2d2b; }
 .svc-body p { margin: 0 0 10px; color: rgba(4, 42, 38, .8); font-size: 14px; line-height: 1.6; }
 .svc-link { text-decoration: none; color: #0fa698; font-weight: 600; }
+
+/* Interaction polish & scroll reveal utilities */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;will-change:opacity,transform}
+.reveal.in-view{opacity:1;transform:none}
+
+/* Micro-interactions */
+.btn{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-1px)}
+.svc-card,.card{transition:transform .25s ease,box-shadow .25s ease}
+.svc-card:hover,.card:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,37,33,.14)}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{transition:none!important;opacity:1!important;transform:none!important}
+  .btn,.svc-card,.card{transition:none!important}
+}
