@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669',
+                        sidebar: '#065f46',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
+    <!-- Mobile menu overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed left-0 top-0 h-full w-64 bg-sidebar dark:bg-gray-800 text-white transform -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out z-50">
+        <div class="p-6">
+            <div class="flex items-center space-x-3 mb-8">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                    <i class="fas fa-user-md text-white text-sm"></i>
+                </div>
+                <h1 class="text-xl font-bold">MedConnect</h1>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="#" data-page="home"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg bg-primary/20 text-green-200">
+                    <i class="fas fa-home w-5"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" data-page="patients"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-users w-5"></i>
+                    <span>My Patients</span>
+                </a>
+                <a href="#" data-page="appointments"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-calendar-check w-5"></i>
+                    <span>Appointments</span>
+                </a>
+                <a href="#" data-page="prescriptions"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-prescription-bottle w-5"></i>
+                    <span>Prescriptions</span>
+                </a>
+                <a href="#" data-page="analytics"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-chart-line w-5"></i>
+                    <span>Health Analytics</span>
+                </a>
+                <a href="#" data-page="account"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-user-cog w-5"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#"
+                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
+                    <i class="fas fa-cog w-5"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="lg:ml-64">
+        <!-- Top Navigation -->
+        <header
+            class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+            <div class="flex items-center justify-between px-4 py-4">
+                <div class="flex items-center space-x-4">
+                    <button id="mobile-menu-btn"
+                        class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Doctor Dashboard</h2>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Search Bar -->
+                    <div class="hidden sm:block relative">
+                        <input type="text" placeholder="Search patients..."
+                            class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-64">
+                        <i
+                            class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i id="theme-icon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+                    </button>
+
+                    <!-- Notifications -->
+                    <button
+                        class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-bell text-gray-600 dark:text-gray-300"></i>
+                        <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                    </button>
+
+                    <!-- Profile -->
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                            alt="Profile" class="w-8 h-8 rounded-full object-cover">
+                        <span class="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">Dr. Michael
+                            Chen</span>
+                        <i class="fas fa-chevron-down text-gray-400 dark:text-gray-500 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="p-4 lg:p-6">
+            <!-- Home Page -->
+            <div id="home-page" class="page-content space-y-6">
+                <!-- Breadcrumb -->
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">Dashboard</span>
+                </nav>
+
+                <!-- Quick Doctor Info -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                        <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                                    alt="Doctor Photo"
+                                    class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+                                <div
+                                    class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-white rounded-full">
+                                </div>
+                            </div>
+                            <div>
+                                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dr. Michael Chen</h1>
+                                <p class="text-gray-600 dark:text-gray-300">Cardiologist • License: MD-2024-001</p>
+                                <p class="text-gray-500 dark:text-gray-400 flex items-center mt-1">
+                                    <i class="fas fa-envelope mr-2"></i>dr.chen@medconnect.com
+                                </p>
+                                <p class="text-gray-500 dark:text-gray-400 flex items-center">
+                                    <i class="fas fa-phone mr-2"></i>+1 (555) 987-6543
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                            <button
+                                class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
+                                <i class="fas fa-user-plus mr-2"></i>Add Patient
+                            </button>
+                            <button
+                                class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-calendar mr-2"></i>View Schedule
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
+                                <i class="fas fa-users text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Patients</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">247</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">+12 this month</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 dark:bg-green-900">
+                                <i class="fas fa-calendar-check text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Today's Appointments</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">8</p>
+                                <p class="text-xs text-blue-600 dark:text-blue-400">Next: 10:30 AM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
+                                <i class="fas fa-prescription-bottle text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Prescriptions Today</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">15</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">3 pending review</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                                <i class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Urgent Cases</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">3</p>
+                                <p class="text-xs text-red-600 dark:text-red-400">Requires attention</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-900 dark:text-white">Completed consultation with Sarah
+                                        Johnson</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">30 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-900 dark:text-white">Updated prescription for John Smith
+                                    </p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-gray-900 dark:text-white">New urgent case assigned: Emma
+                                        Davis</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">2 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Patients Page -->
+            <div id="patients-page" class="page-content space-y-6 hidden">
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">My Patients</span>
+                </nav>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">My Patients</h1>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-user-plus mr-2"></i>Add New Patient
+                    </button>
+                </div>
+
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient List</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 dark:bg-gray-700">
+                                <tr>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Patient</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Age</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Condition</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Last Visit</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Status</th>
+                                    <th
+                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                        Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                src="https://images.unsplash.com/photo-1494790108755-2616b612b8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                                                alt="">
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Sarah
+                                                    Johnson</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-001</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">39</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Hypertension</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Stable</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">
+                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                                                alt="">
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">John
+                                                    Smith</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-002</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">45</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Diabetes Type 2</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Monitoring</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">
+                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                                                alt="">
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Emma
+                                                    Davis</div>
+                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-003</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">32</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Chest Pain</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">Critical</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm">
+                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
+                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Page -->
+            <div id="appointments-page" class="page-content space-y-6 hidden">
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">Appointments</span>
+                </nav>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Appointments</h1>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-calendar-plus mr-2"></i>Schedule Appointment
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <!-- Today's Schedule -->
+                    <div class="xl:col-span-2">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Today's Schedule</h2>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <div
+                                    class="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-l-4 border-green-500">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-user text-green-600 dark:text-green-400"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Sarah
+                                                    Johnson</p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Follow-up
+                                                    consultation</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">10:30 AM
+                                                </p>
+                                                <p class="text-xs text-green-600 dark:text-green-400">30 min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-user text-blue-600 dark:text-blue-400"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">John Smith
+                                                </p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Diabetes check-up
+                                                </p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">2:
+                                                    00 PM</p>
+                                                <p class="text-xs text-blue-600 dark:text-blue-400">45 min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
+                                    <div class="flex-shrink-0">
+                                        <div
+                                            class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-user text-yellow-600 dark:text-yellow-400"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Emma Davis
+                                                </p>
+                                                <p class="text-sm text-gray-500 dark:text-gray-400">Emergency
+                                                    consultation</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="text-sm font-medium text-gray-900 dark:text-white">4:15 PM</p>
+                                                <p class="text-xs text-yellow-600 dark:text-yellow-400">60 min</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="xl:col-span-1">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h2>
+                            </div>
+                            <div class="p-6 space-y-4">
+                                <button
+                                    class="w-full flex items-center p-3 text-left bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors">
+                                    <i class="fas fa-user-plus text-green-600 dark:text-green-400 mr-3"></i>
+                                    <span class="text-gray-900 dark:text-white">Add New Patient</span>
+                                </button>
+                                <button
+                                    class="w-full flex items-center p-3 text-left bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors">
+                                    <i class="fas fa-prescription-bottle text-blue-600 dark:text-blue-400 mr-3"></i>
+                                    <span class="text-gray-900 dark:text-white">Write Prescription</span>
+                                </button>
+                                <button
+                                    class="w-full flex items-center p-3 text-left bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors">
+                                    <i class="fas fa-notes-medical text-purple-600 dark:text-purple-400 mr-3"></i>
+                                    <span class="text-gray-900 dark:text-white">Medical Notes</span>
+                                </button>
+                                <button
+                                    class="w-full flex items-center p-3 text-left bg-yellow-50 dark:bg-yellow-900/20 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors">
+                                    <i class="fas fa-calendar-check text-yellow-600 dark:text-yellow-400 mr-3"></i>
+                                    <span class="text-gray-900 dark:text-white">Schedule Follow-up</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescriptions Page -->
+            <div id="prescriptions-page" class="page-content space-y-6 hidden">
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">Prescriptions</span>
+                </nav>
+
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Prescriptions</h1>
+                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Write New Prescription
+                    </button>
+                </div>
+
+                <div class="grid gap-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div
+                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Sarah Johnson -
+                                        Metformin</h3>
+                                    <span
+                                        class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 500mg twice
+                                    daily</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Jan 15,
+                                    2024</p>
+                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Type 2 Diabetes
+                                    Management</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="downloadPrescription('Sarah Johnson', 'Metformin')"
+                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Download PDF
+                                </button>
+                                <button
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-edit mr-2"></i>Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div
+                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">John Smith -
+                                        Lisinopril</h3>
+                                    <span
+                                        class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 10mg once
+                                    daily</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Dec 20,
+                                    2023</p>
+                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Hypertension
+                                    Control</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="downloadPrescription('John Smith', 'Lisinopril')"
+                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Download PDF
+                                </button>
+                                <button
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-edit mr-2"></i>Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div
+                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                            <div class="flex-1">
+                                <div class="flex items-center space-x-3 mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Emma Davis - Aspirin
+                                    </h3>
+                                    <span
+                                        class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Pending
+                                        Review</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 81mg daily</p>
+                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Feb 2,
+                                    2024</p>
+                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Cardiovascular
+                                    Protection</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="downloadPrescription('Emma Davis', 'Aspirin')"
+                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>Download PDF
+                                </button>
+                                <button
+                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                    <i class="fas fa-edit mr-2"></i>Edit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Analytics Page -->
+            <div id="analytics-page" class="page-content space-y-6 hidden">
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">Health Analytics</span>
+                </nav>
+
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Health Analytics</h1>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
+                                <i class="fas fa-heartbeat text-blue-600 dark:text-blue-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Heart Rate</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">74 BPM</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">Normal Range</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-red-100 dark:bg-red-900">
+                                <i class="fas fa-tint text-red-600 dark:text-red-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Blood Pressure</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">118/78</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">Optimal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 dark:bg-green-900">
+                                <i class="fas fa-weight text-green-600 dark:text-green-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Weight Trend</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">-2.1 kg</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">Improving</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
+                                <i class="fas fa-chart-line text-purple-600 dark:text-purple-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Risk Score</p>
+                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">Low</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">Decreased 15%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient Data Analysis -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient Historical Data</h2>
+                            <button id="toggle-analytics"
+                                class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
+                                <i class="fas fa-chart-bar mr-2"></i>View More Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="analytics-summary" class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Patients Monitored</p>
+                                <p class="text-xl font-semibold text-gray-900 dark:text-white">247</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Critical Cases</p>
+                                <p class="text-xl font-semibold text-red-600 dark:text-red-400">3</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Recovery Rate</p>
+                                <p class="text-xl font-semibold text-green-600 dark:text-green-400">94.2%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="analytics-details" class="hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50 dark:bg-gray-700">
+                                    <tr>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Patient</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Blood Pressure</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Weight</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Heart Rate</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Risk Level</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                                            Last Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Sarah Johnson</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">120/80</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">65.2 kg</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">72 BPM</td>
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Low</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">John Smith</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">135/85</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">78.5 kg</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">76 BPM</td>
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Medium</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Emma Davis</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">145/95</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">62.1 kg</td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">89 BPM</td>
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">High</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account/Profile Page -->
+            <div id="account-page" class="page-content space-y-6 hidden">
+                <nav class="text-sm text-gray-500 dark:text-gray-400">
+                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
+                        class="text-gray-800 dark:text-gray-200">Profile</span>
+                </nav>
+
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Doctor Profile</h1>
+
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                    <!-- Professional Information -->
+                    <div class="xl:col-span-2">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Professional
+                                        Information</h2>
+                                    <button
+                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fas fa-edit text-xs"></i>
+                                        <span>Edit</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="p-6 space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Full
+                                            Name</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">Dr. Michael Chen</p>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="text-sm font-medium text-gray-500 dark:text-gray-400">Specialization</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">Cardiologist</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Email
+                                            Address</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">dr.chen@medconnect.com</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone
+                                            Number</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">+1 (555) 987-6543</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">License
+                                            Number</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">MD-2024-001</p>
+                                    </div>
+                                    <div>
+                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Years of
+                                            Experience</label>
+                                        <p class="mt-1 text-gray-900 dark:text-white">15 years</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Professional
+                                        Summary</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Board-certified cardiologist with over
+                                        15 years of experience in treating cardiovascular diseases. Specialized in
+                                        interventional cardiology and preventive heart care. Committed to providing
+                                        comprehensive cardiac care using the latest medical technologies and
+                                        evidence-based treatments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Hospital Affiliation
+                                    </h2>
+                                    <button
+                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fas fa-edit text-xs"></i>
+                                        <span>Edit</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="p-6 space-y-4">
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Primary
+                                        Hospital</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">San Francisco General Hospital</p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="text-sm font-medium text-gray-500 dark:text-gray-400">Department</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Cardiology Department</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office
+                                        Hours</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Mon-Fri: 8:00 AM - 6:00 PM</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office
+                                        Location</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Building A, Floor 3, Room 301</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certifications -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Certifications</h2>
+                                    <button
+                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                        <i class="fas fa-edit text-xs"></i>
+                                        <span>Edit</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="p-6 space-y-4">
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Board
+                                        Certification</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">American Board of Internal Medicine -
+                                        Cardiology</p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="text-sm font-medium text-gray-500 dark:text-gray-400">Fellowship</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Interventional Cardiology Fellowship
+                                    </p>
+                                </div>
+                                <div>
+                                    <label class="text-sm font-medium text-gray-500 dark:text
+gray-400">Medical School</label>
+                                    <p class="mt-1 text-gray-900 dark:text-white">Harvard Medical School</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Theme Management
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', currentTheme === 'dark');
+        updateThemeIcon(currentTheme);
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun text-yellow-500';
+            } else {
+                themeIcon.className = 'fas fa-moon text-gray-600 dark:text-gray-300';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Page Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageContents = document.querySelectorAll('.page-content');
+
+        function showPage(pageId) {
+            // Hide all pages
+            pageContents.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update active nav link
+            navLinks.forEach(link => {
+                link.classList.remove('bg-primary/20', 'text-green-200');
+                link.classList.add('hover:bg-white/10');
+            });
+
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('bg-primary/20', 'text-green-200');
+                activeLink.classList.remove('hover:bg-white/10');
+            }
+        }
+
+        // Add click handlers to nav links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                if (pageId) {
+                    showPage(pageId);
+
+                    // Close mobile menu if open
+                    if (window.innerWidth < 1024) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+
+        function toggleMobileMenu() {
+            sidebar.classList.toggle('-translate-x-full');
+            mobileOverlay.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Health Analytics - View More Data Toggle
+        const toggleAnalyticsBtn = document.getElementById('toggle-analytics');
+        const analyticsSummary = document.getElementById('analytics-summary');
+        const analyticsDetails = document.getElementById('analytics-details');
+
+        if (toggleAnalyticsBtn) {
+            toggleAnalyticsBtn.addEventListener('click', () => {
+                const isDetailsVisible = !analyticsDetails.classList.contains('hidden');
+
+                if (isDetailsVisible) {
+                    analyticsDetails.classList.add('hidden');
+                    analyticsSummary.classList.remove('hidden');
+                    toggleAnalyticsBtn.innerHTML = '<i class="fas fa-chart-bar mr-2"></i>View More Data';
+                } else {
+                    analyticsDetails.classList.remove('hidden');
+                    analyticsSummary.classList.add('hidden');
+                    toggleAnalyticsBtn.innerHTML = '<i class="fas fa-chart-line mr-2"></i>View Less Data';
+                }
+            });
+        }
+
+        // Prescription PDF Download
+        function downloadPrescription(patientName, medicineName) {
+            // Simulate PDF download
+            alert(`Downloading prescription PDF for ${patientName} - ${medicineName}. In a real application, this would generate and download a PDF file.`);
+        }
+
+        // Quick Actions functionality
+        document.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            if (button) {
+                const buttonText = button.textContent.trim();
+
+                if (buttonText.includes('Add New Patient')) {
+                    alert('Add New Patient form would open here.');
+                } else if (buttonText.includes('Write Prescription')) {
+                    alert('Prescription writing interface would open here.');
+                } else if (buttonText.includes('Medical Notes')) {
+                    alert('Medical notes interface would open here.');
+                } else if (buttonText.includes('Schedule Follow-up')) {
+                    alert('Follow-up scheduling interface would open here.');
+                } else if (buttonText.includes('Edit') && !buttonText.includes('Write') && !buttonText.includes('Add')) {
+                    alert('Edit functionality would be implemented here with a modal form.');
+                } else if (buttonText.includes('Schedule Appointment')) {
+                    alert('Appointment scheduling interface would open here.');
+                } else if (buttonText.includes('Write New Prescription')) {
+                    alert('New prescription interface would open here.');
+                } else if (buttonText.includes('Add Patient')) {
+                    alert('Patient registration form would open here.');
+                } else if (buttonText.includes('View Schedule')) {
+                    alert('Full schedule view would open here.');
+                }
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('input[placeholder="Search patients..."]');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    alert(`Searching for patient: ${this.value}`);
+                }
+            });
+        }
+
+        // Patient table actions
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent === 'View') {
+                const row = e.target.closest('tr');
+                const patientName = row.querySelector('.text-sm.font-medium').textContent;
+                alert(`Opening detailed view for ${patientName}`);
+            }
+        });
+
+        // Responsive handling
+        function handleResize() {
+            if (window.innerWidth >= 1024) {
+                sidebar.classList.remove('-translate-x-full');
+                mobileOverlay.classList.add('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial check
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show home page by default
+            showPage('home');
+        });
+    </script>
+</body>
+
+</html>
