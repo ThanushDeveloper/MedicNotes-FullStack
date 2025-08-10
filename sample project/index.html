@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hospital – Demo</title>
+  <title>MedicNotes – Home</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -138,6 +138,43 @@
       .news .posts{grid-template-columns:1fr}
       .philosophy .panel-wrap{justify-content:center}
     }
+
+    /* Landing (MedicNotes) */
+    .landing{background:linear-gradient(135deg,#0f53a1 0%,#2a74d8 50%,#43a0ff 100%);color:#fff;position:relative;overflow:hidden;padding:70px 0}
+    .landing:before,.landing:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.15}
+    .landing:before{width:420px;height:420px;background:#fff;top:-120px;left:-120px}
+    .landing:after{width:520px;height:520px;background:#000;bottom:-160px;right:-160px}
+    .landing-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+    .landing h1{margin:0 0 12px;font-weight:800;letter-spacing:.4px;font-size:clamp(28px,4.2vw,48px)}
+    .landing p{margin:0 0 22px;max-width:640px;color:#eaf2ff;font-size:16px}
+    .landing .cta .btn{height:50px}
+    .landing .cta .btn:first-child{background:#fff;color:#0b3a7e}
+    .landing .cta .btn:first-child:hover{filter:brightness(.98)}
+    .landing-visual{position:relative}
+    .landing-visual img{width:100%;max-width:520px;margin:0 auto;animation:float 6s ease-in-out infinite}
+
+    /* Animations */
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    .features .feature{opacity:0;animation:fadeUp .8s ease forwards}
+    .features .feature:nth-child(1){animation-delay:.08s}
+    .features .feature:nth-child(2){animation-delay:.16s}
+    .features .feature:nth-child(3){animation-delay:.24s}
+    .features .feature:nth-child(4){animation-delay:.32s}
+    .features .feature:nth-child(5){animation-delay:.40s}
+    .features .feature:nth-child(6){animation-delay:.48s}
+
+    .departments .dept-card{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease forwards}
+    .departments .dept-card:nth-child(odd){animation-delay:.12s}
+    .departments .dept-card:nth-child(even){animation-delay:.24s}
+
+    .news .post{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease .2s forwards}
+
+    @media (prefers-reduced-motion: reduce){
+      .landing-visual img{animation:none}
+      .features .feature,.departments .dept-card,.news .post{animation:none;opacity:1;transform:none}
+    }
   </style>
 </head>
 <body>
@@ -146,8 +183,8 @@
   <div class="topbar">
     <div class="container nav">
       <div class="brand">
-        Hospital
-        <span class="logo-badge">+</span>
+        MedicNotes
+        <span class="logo-badge">MN</span>
       </div>
       <nav class="menu">
         <a href="#">Home</a>
@@ -158,9 +195,28 @@
         <a href="#">Events</a>
         <a href="#">Pages</a>
         <a href="#">Contact</a>
+        <a href="/login" class="btn btn-white" style="height:40px;padding:0 16px;border:1px solid #dfe3eb">Login</a>
+        <a href="#appointment" class="btn btn-red" style="height:40px;padding:0 18px">Book Appointment</a>
       </nav>
     </div>
   </div>
+
+  <!-- Landing -->
+  <section class="landing">
+    <div class="container landing-grid">
+      <div>
+        <h1>All your medical notes and appointments in one place.</h1>
+        <p>MedicNotes helps you securely manage medical records, track visits, and book appointments with ease. Stay organized and connected to your care, anytime.</p>
+        <div class="cta actions" style="margin-top:10px">
+          <a href="/login" class="btn">Login</a>
+          <a href="#appointment" class="btn btn-red">Book Appointment</a>
+        </div>
+      </div>
+      <div class="landing-visual">
+        <img src="../assets/image.png" alt="MedicNotes Illustration">
+      </div>
+    </div>
+  </section>
 
   <!-- Appointment / Schedules -->
   <section class="hero">
@@ -197,7 +253,7 @@
       </div>
 
       <!-- Book Appointment -->
-      <div class="card">
+      <div class="card" id="appointment">
         <h3>BOOK APPOINTMENT</h3>
         <div class="underline"></div>
 
@@ -461,8 +517,8 @@
         </div>
       </div>
       <div class="copyright">
-        <span>© 2025 Hospital Plus.</span>
-        <span>Designed by ThemeWarrior</span>
+        <span>© 2025 MedicNotes.</span>
+        <span>Designed by MedicNotes</span>
       </div>
     </div>
   </footer>
