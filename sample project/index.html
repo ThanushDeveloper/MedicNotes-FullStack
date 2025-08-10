@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hospital – Demo</title>
+  <title>MedicNotes – Home</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -59,13 +60,13 @@
     .btn-red:hover{filter:brightness(.95)}
     .btn-green{background:var(--green);color:#fff}
     .btn-green:hover{filter:brightness(.95)}
-    .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
+   .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
 
     /* Best Hospital section */
     .features{padding:64px 0 84px;background:#fff}
     .section-head{text-align:center;margin-bottom:30px}
     .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
-    .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
+   .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
 
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
     .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
@@ -85,7 +86,7 @@
       .grid-3{grid-template-columns:1fr}
     }
 
-    /* Our Philosophy */
+   /* Our Philosophy */
     .philosophy{padding:60px 0;background:#fff}
     .philosophy .space{height:10px}
     .philosophy .panel-wrap{display:flex;justify-content:flex-end}
@@ -138,6 +139,41 @@
       .news .posts{grid-template-columns:1fr}
       .philosophy .panel-wrap{justify-content:center}
     }
+
+    /* Landing (MedicNotes) */
+    .landing{background:linear-gradient(135deg,#0f53a1 0%,#2a74d8 50%,#43a0ff 100%);color:#fff;position:relative;overflow:hidden;padding:70px 0}
+    .landing:before,.landing:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.15}
+    .landing:before{width:420px;height:420px;background:#fff;top:-120px;left:-120px}
+    .landing:after{width:520px;height:520px;background:#000;bottom:-160px;right:-160px}
+    .landing-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+    .landing h1{margin:0 0 12px;font-weight:800;letter-spacing:.4px;font-size:clamp(28px,4.2vw,48px)}
+    .landing p{margin:0 0 22px;max-width:640px;color:#eaf2ff;font-size:16px}
+    .landing .cta .btn{height:50px}
+    .landing .cta .btn:first-child{background:#fff;color:#0b3a7e}
+    .landing .cta .btn:first-child:hover{filter:brightness(.98)}
+    .landing-visual{position:relative}
+    .landing-visual img{width:100%;max-width:520px;margin:0 auto;animation:float 6s ease-in-out infinite}
+
+    /* Animations */
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    .features .feature{opacity:0;animation:fadeUp .8s ease forwards}
+    .features .feature:nth-child(1){animation-delay:.08s}
+    .features .feature:nth-child(2){animation-delay:.16s}
+    .features .feature:nth-child(3){animation-delay:.24s}
+    .features .feature:nth-child(4){animation-delay:.32s}
+    .features .feature:nth-child(5){animation-delay:.40s}
+    .features .feature:nth-child(6){animation-delay:.48s}
+
+    .departments .dept-card{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease forwards}
+    .departments .dept-card:nth-child(odd){animation-delay:.12s}
+    .departments .dept-card:nth-child(even){animation-delay:.24s}
+
+    .news .post{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease .2s forwards}
+
+    @media (prefers-reduced-motion: reduce){+      .landing-visual img{animation:none}+      .features .feature,.departments .dept-card,.news .post{animation:none;opacity:1;transform:none}
+    }
   </style>
 </head>
 <body>
@@ -146,21 +182,40 @@
   <div class="topbar">
     <div class="container nav">
       <div class="brand">
-        Hospital
-        <span class="logo-badge">+</span>
+        MedicNotes
+        <!-- <span class="logo-badge">MN</span> -->
       </div>
       <nav class="menu">
-        <a href="#">Home</a>
+        <!-- <a href="#">Home</a>
         <a href="#">Doctors</a>
         <a href="#">Departments</a>
         <a href="#">Gallery</a>
         <a href="#">Services</a>
         <a href="#">Events</a>
         <a href="#">Pages</a>
-        <a href="#">Contact</a>
+        <a href="#">Contact</a> -->
+        <a href="/login" class="btn btn-white" style="height:40px;padding:0 16px;border:1px solid #dfe3eb">Login</a>
+        <a href="#appointment" class="btn btn-red" style="height:40px;padding:0 18px">Book Appointment</a>
       </nav>
     </div>
   </div>
+
+  <!-- Landing -->
+  <section class="landing">
+    <div class="container landing-grid">
+      <div>
+        <h1>All your medical notes and appointments in one place.</h1>
+        <p>MedicNotes helps you securely manage medical records, track visits, and book appointments with ease. Stay organized and connected to your care, anytime.</p>
+        <div class="cta actions" style="margin-top:10px">
+          <a href="/login" class="btn">Login</a>
+          <a href="#appointment" class="btn btn-red">Book Appointment</a>
+        </div>
+      </div>
+      <div class="landing-visual">
+        <img src="assets/image.png" alt="MedicNotes Illustration">
+      </div>
+    </div>
+  </section>
 
   <!-- Appointment / Schedules -->
   <section class="hero">
@@ -197,7 +252,7 @@
       </div>
 
       <!-- Book Appointment -->
-      <div class="card">
+      <div class="card" id="appointment">
         <h3>BOOK APPOINTMENT</h3>
         <div class="underline"></div>
 
@@ -296,8 +351,7 @@
   <section class="philosophy">
     <div class="container">
       <div class="space"></div>
-      <div class="panel-wrap">
-        <div class="panel">
+      <div class="panel-wrap">+        <div class="panel">
           <h3>OUR PHILOSOPHY</h3>
           <p class="sub">This is the subtitle for the heading</p>
           <p>Patients have an important role to play at each stage of their care and the five safety tips will serve to encourage them to be more involved in their health care.</p>
@@ -461,11 +515,12 @@
         </div>
       </div>
       <div class="copyright">
-        <span>© 2025 Hospital Plus.</span>
-        <span>Designed by ThemeWarrior</span>
+        <span>© 2025 MedicNotes.</span>
+        <span>Designed by MedicNotes</span>
       </div>
     </div>
   </footer>
 
 </body>
 </html>
+

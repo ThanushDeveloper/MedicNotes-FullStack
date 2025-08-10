@@ -29,11 +29,7 @@
           <a href="#">Contact</a>
         </nav> -->
         <div>
-        <a class="call-pill" style="color: black;background-color: transparent;">
-          <!-- <span class="phone-ico" aria-hidden="true">☎</span> -->
-          <span>Book Appointment</span>
-        </a>
-        
+       
         
          <a class="call-pill" href="tel:+1234567890" >
           <span class="phone-ico" aria-hidden="true">☎</span>
@@ -167,5 +163,27 @@
         </div>
       </section>
     </main>
+
+    <script>
+      (function() {
+        var img = document.querySelector('.hero-visual .doctor');
+        if (!img) return;
+        var onIntersect = function(entries, obs){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+              img.classList.add('is-visible');
+              obs.disconnect();
+            }
+          });
+        };
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(onIntersect, { root: null, threshold: 0.8 });
+          io.observe(img);
+        } else {
+          img.classList.add('is-visible');
+        }
+      })();
+    </script>
+
   </body>
 </html>
