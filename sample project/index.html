@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +23,10 @@
      /* Easing for smoother interactions */
      --ease: cubic-bezier(.22,.61,.36,1);
      --ease-out: cubic-bezier(.16,1,.3,1);
+     /* Additional shadows for subtle elevation states */
+     --shadow-soft: 0 8px 20px rgba(16,24,40,.06);
+     --shadow-md: 0 12px 28px rgba(16,24,40,.10);
+     --shadow-lg: 0 16px 40px rgba(16,24,40,.16);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
@@ -31,13 +34,15 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--container);margin:0 auto;padding:0 20px}
     /* Header */
-    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
+    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50;will-change:box-shadow;background-clip:padding-box;transition:box-shadow .35s var(--ease)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
     .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
     .menu{display:flex;gap:26px;color:#222}
     .menu a{font-weight:500;font-size:14px;opacity:.85}
     .menu a:hover{opacity:1}
+    /* Subtle elevation when the header is stuck */
+    .topbar.stuck{box-shadow:var(--shadow-soft)}
     /* Hero appointment block */
     .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
     .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
@@ -163,15 +168,22 @@
     .reveal.in-view{opacity:1;transform:none}
     .reveal{transition-delay:var(--d,0s)}
 
+    /* Animate section underlines when their headers enter view */
+    .section-head .underline{transform-origin:left;transform:scaleX(.72);opacity:.6;transition:transform .6s var(--ease),opacity .6s var(--ease);will-change:transform,opacity}
+    .section-head.reveal.in-view .underline{transform:scaleX(1);opacity:1}
+
     /* Hover/active/focus interactions */
     .dept-card,.post,.feature{transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);will-change:transform}
-    .dept-card:hover,.post:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(16,24,40,.1)}
+    .dept-card:hover,.post:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
     .feature:hover{transform:translateY(-4px)}
     .post img,.dept-card img{transition:transform .6s var(--ease);transform-origin:center}
     .post:hover img,.dept-card:hover img{transform:scale(1.03)}
 
+    .feature .icon-wrap{transition:transform .4s var(--ease)}
+    .feature:hover .icon-wrap{transform:translateY(-2px) scale(1.06)}
+
     .btn{transition:transform .25s var(--ease-out),filter .25s var(--ease-out),box-shadow .25s var(--ease-out)}
-    .btn:hover{transform:translateY(-1px)}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-md)}
     .btn:active{transform:translateY(0);filter:brightness(.96)}
     .btn:focus-visible{outline:2px solid rgba(19,95,168,.35);outline-offset:2px;transition:outline-color .2s var(--ease)}
 
@@ -182,6 +194,11 @@
     .tag:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.15)}
 
     a{transition:color .2s var(--ease),opacity .2s var(--ease)}
+
+    /* Read more arrow nudge */
+    .read-more{position:relative}
+    .read-more::after{content:"→";display:inline-block;margin-left:8px;transform:translateX(0);transition:transform .25s var(--ease)}
+    .post:hover .read-more::after,.read-more:hover::after{transform:translateX(4px)}
 
     @media (hover:none){
       .dept-card:hover,.post:hover,.feature:hover{transform:none;box-shadow:var(--shadow)}
@@ -229,9 +246,9 @@
           <a href="#appointment" class="btn btn-red">Book Appointment</a>
         </div>
       </div>
-      <div class="landing-visual reveal" style="--d:.12s">
-        <img src="assets/image.png" alt="MedicNotes Illustration">
-      </div>
+      <!-- <div class="landing-visual reveal" style="--d:.12s">
+        <img src="/assets/image.png" alt="MedicNotes Illustration">
+      </div> -->
     </div>
   </section>
 
@@ -369,7 +386,7 @@
   <section class="philosophy">
     <div class="container">
       <div class="space"></div>
-      <div class="panel-wrap">+        <div class="panel reveal" style="--d:.06s">
+      <div class="panel-wrap"><div class="panel reveal" style="--d:.06s">
           <h3>OUR PHILOSOPHY</h3>
           <p class="sub">This is the subtitle for the heading</p>
           <p>Patients have an important role to play at each stage of their care and the five safety tips will serve to encourage them to be more involved in their health care.</p>
@@ -553,7 +570,19 @@
     els.forEach(activate);
   }
 })();
+
+// Elevate header when page is scrolled
+(function(){
+  var header=document.querySelector('.topbar');
+  if(!header) return;
+  var onScroll=function(){
+    if(window.scrollY>2){header.classList.add('stuck')}else{header.classList.remove('stuck')}
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
 </script>
 
 </body>
 </html>
+
