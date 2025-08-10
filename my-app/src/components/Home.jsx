@@ -163,9 +163,9 @@ function Home() {
 .home-root-home .nav-toggle-home .hamburger-home span:nth-child(2){top:5px}
 .home-root-home .nav-toggle-home .hamburger-home span:nth-child(3){top:10px}
 @media (max-width: 720px){
-  .home-root-home .nav-home{flex-wrap:nowrap;height:64px}
+  .home-root-home .nav-home{flex-wrap:nowrap;height:auto;padding:12px 0}
   .home-root-home .nav-toggle-home{display:inline-flex;margin-left:auto}
-  .home-root-home .topbar-home .menu-home{position:absolute;top:64px;left:20px;right:20px;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(10px);border:1px solid rgba(255,255,255,.35);border-radius:12px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px;padding:14px;opacity:0;transform:translateY(-6px) scale(.98);transform-origin:top right;pointer-events:none;transition:opacity .28s var(--ease),transform .28s var(--ease)}
+  .home-root-home .topbar-home .menu-home{position:absolute;top:calc(100% + 8px);left:20px;right:20px;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.2) blur(10px);border:1px solid rgba(255,255,255,.35);border-radius:12px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px;padding:14px;opacity:0;transform:translateY(-6px) scale(.98);transform-origin:top right;pointer-events:none;transition:opacity .28s var(--ease),transform .28s var(--ease)}
   .home-root-home .topbar-home .menu-home a,.home-root-home .topbar-home .menu-home .theme-toggle-home{width:100%}
   .home-root-home .topbar-home .menu-home .btn-home{height:44px}
   .home-root-home .topbar-home.nav-open-home .menu-home{opacity:1;transform:none;pointer-events:auto}
@@ -317,6 +317,11 @@ function Home() {
 .home-root-home[data-theme-home="dark"] .stats-panel-home{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
 .home-root-home[data-theme-home="dark"] .stat-home{background:rgba(255,255,255,.04)}
 .home-root-home[data-theme-home="dark"] .stat-home .label-home{color:#cfd4db}
+@media (max-width: 980px){.home-root-home .departments-home .grid-4-home{grid-template-columns:1fr 1fr}}
+@media (max-width: 620px){.home-root-home .departments-home .grid-4-home{grid-template-columns:1fr}}
+@media (max-width: 980px){.home-root-home .news-home .posts-home{grid-template-columns:1fr 1fr}}
+@media (max-width: 620px){.home-root-home .news-home .posts-home{grid-template-columns:1fr}}
+
 `;
 
   return (
