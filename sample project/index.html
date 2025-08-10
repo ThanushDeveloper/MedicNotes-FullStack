@@ -210,6 +210,27 @@
       .dept-card,.post,.feature,.btn,.field,.tag{transition:none!important}
     }
   </style>
+  <style>
+    /* Theme variables and overrides */
+    :root{--pageBg:#ffffff;--heroStart:#0f53a1;--heroMid:#2a74d8;--heroEnd:#43a0ff;--heroGradient:linear-gradient(135deg,var(--heroStart) 0%,var(--heroMid) 50%,var(--heroEnd) 100%);--headerText:#ffffff;--contentBg:#ffffff}
+    html,body{background:var(--pageBg);color:var(--text);transition:background-color .35s var(--ease),color .35s var(--ease)}
+         .topbar{background:var(--heroGradient);color:var(--headerText);border-bottom-color:rgba(255,255,255,.18)!important;transition:background .4s var(--ease),color .35s var(--ease)}
+    .topbar .brand,.topbar .menu{color:var(--headerText)}
+    .landing{background:var(--heroGradient);transition:background .4s var(--ease),color .35s var(--ease)}
+    .hero{background:var(--heroGradient);transition:background .4s var(--ease),color .35s var(--ease)}
+    .features,.departments{background:var(--contentBg);transition:background-color .4s var(--ease)}
+         .topbar .btn.btn-white{background:#fff;color:#1b2a41;border:1px solid #dfe3eb}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 14px;border-radius:20px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;font-weight:600;box-shadow:var(--shadow)}
+    .theme-toggle .icon{width:18px;height:18px;display:block}
+    [data-theme="dark"]{--text:#e6edf5;--muted:#a7b3c2;--pageBg:#0b1220;--field:#0f172a;--border:#1f2a44;--navy:#cfe1ff;--heroStart:#0b3a7e;--heroMid:#1052b5;--heroEnd:#1f6fe0;--headerText:#e6edf5;--contentBg:#0e1525}
+         [data-theme="dark"] .post,[data-theme="dark"] .dept-card{background:#111a2e;border-color:rgba(255,255,255,.08)}
+     [data-theme="dark"] .news{background:#0b1220}
+    [data-theme="dark"] .post-title{color:#e6edf5}
+    [data-theme="dark"] .post-footer{background:rgba(255,255,255,.04);border-top-color:rgba(255,255,255,.08)}
+    [data-theme="dark"] .feature h4{color:#e6edf5}
+    [data-theme="dark"] .section-head p{color:var(--muted)}
+    [data-theme="dark"] .btn.btn-white{background:#ffffff;color:#0b3a7e}
+  </style>
 </head>
 <body>
 
@@ -231,6 +252,7 @@
         <a href="#">Contact</a> -->
         <a href="/login" class="btn btn-white" style="height:40px;padding:0 16px;border:1px solid #dfe3eb">Login</a>
         <a href="#appointment" class="btn btn-red" style="height:40px;padding:0 18px">Book Appointment</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme"><svg class="icon icon-sun" viewBox="0 0 24 24" fill="currentColor"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0l1.79-1.8 1.41 1.41-1.8 1.79-1.4-1.4zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.42 1.42-1.79-1.8 1.41-1.41 1.8 1.79zM19.16 17.24l1.41 1.41-1.79 1.8-1.42-1.42 1.8-1.79zM12 8a4 4 0 100 8 4 4 0 000-8z"/></svg><svg class="icon icon-moon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg></button>
       </nav>
     </div>
   </div>
@@ -581,8 +603,45 @@
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
 })();
+
+// Theme toggle
+(function(){
+  var storageKey='theme';
+  var btn=document.getElementById('themeToggle');
+  if(!btn) return;
+  var setIcons=function(theme){
+    var sun=btn.querySelector('.icon-sun');
+    var moon=btn.querySelector('.icon-moon');
+    if(theme==='dark'){if(sun) sun.style.display='none';if(moon) moon.style.display='block'}
+    else{if(sun) sun.style.display='block';if(moon) moon.style.display='none'}
+  };
+  var getPreferred=function(){
+    var v=localStorage.getItem(storageKey);
+    if(v==='light'||v==='dark') return v;
+    return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  };
+  var apply=function(theme){
+    document.documentElement.setAttribute('data-theme',theme);
+    setIcons(theme);
+  };
+  var current=getPreferred();
+  apply(current);
+  btn.addEventListener('click',function(){
+    current=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+    localStorage.setItem(storageKey,current);
+    apply(current);
+  });
+  if(window.matchMedia){
+    try{
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){
+        if(!localStorage.getItem(storageKey)){
+          apply(e.matches?'dark':'light');
+        }
+      });
+    }catch(err){}
+  }
+})();
 </script>
 
 </body>
 </html>
-
