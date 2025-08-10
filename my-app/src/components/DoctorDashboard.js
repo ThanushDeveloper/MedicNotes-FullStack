@@ -10,7 +10,7 @@ function DoctorDashboard() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">hellokj
+    <div className="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
       {/* Mobile menu overlay */}
       <div id="mobile-overlay" className="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
 
