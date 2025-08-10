@@ -321,6 +321,7 @@ function Home() {
 @media (max-width: 620px){.home-root-home .departments-home .grid-4-home{grid-template-columns:1fr}}
 @media (max-width: 980px){.home-root-home .news-home .posts-home{grid-template-columns:1fr 1fr}}
 @media (max-width: 620px){.home-root-home .news-home .posts-home{grid-template-columns:1fr}}
+@media (max-width: 768px){.home-root-home{overflow-x:hidden}.home-root-home .nav-home .brand-home{padding-left:8px}}
 
 `;
 
