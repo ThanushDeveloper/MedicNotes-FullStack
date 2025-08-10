@@ -21,168 +21,176 @@
      --border:#e6e9ef;
      --shadow:0 6px 18px rgba(16,24,40,.08);
      --container:1140px;
-   }
-   *{box-sizing:border-box}
-   html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
-   img,svg{display:block}
-   a{color:inherit;text-decoration:none}
-   .container{max-width:var(--container);margin:0 auto;padding:0 20px}
-   /* Header */
-   .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
-   .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
-   .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
-   .menu{display:flex;gap:26px;color:#222}
-   .menu a{font-weight:500;font-size:14px;opacity:.85}
-   .menu a:hover{opacity:1}
-   /* Hero appointment block */
-   .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
-   .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-   .hero h3{margin:0 0 10px;font-size:24px;letter-spacing:.3px}
-   .underline{width:72px;height:3px;background:#f04a3b;margin:6px 0 18px}
-   .card{background:transparent}
-   .form{display:grid;grid-template-columns:1fr;gap:16px}
-   .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-   label{font-size:13px;opacity:.95;margin-bottom:6px;display:block}
-   .field{width:100%;height:48px;border-radius:4px;border:1px solid #dfe3eb;background:var(--field);padding:0 14px;font-size:14px;color:#1f2937}
-   .select{appearance:none;background:
-     linear-gradient(45deg,transparent 50%,#9aa3b2 50%) right 14px center/9px 9px no-repeat,
-     linear-gradient(135deg,transparent 50%,#9aa3b2 50%) right 9px center/9px 9px no-repeat,
-     var(--field);
-     padding-right:38px
-   }
-   .actions{display:flex;gap:16px;align-items:center;margin-top:6px}
-   .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:4px;font-weight:600;border:0;cursor:pointer;box-shadow:var(--shadow)}
-   .btn-red{background:var(--red);color:#fff}
-   .btn-red:hover{filter:brightness(.95)}
-   .btn-green{background:var(--green);color:#fff}
-   .btn-green:hover{filter:brightness(.95)}
-  .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
-   /* Best Hospital section */
-   .features{padding:64px 0 84px;background:#fff}
-   .section-head{text-align:center;margin-bottom:30px}
-   .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
-  .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
-   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
-   .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
-   .icon-wrap{width:64px;height:64px;color:#d8433e;margin-bottom:16px}
-   .feature h4{margin:0 0 10px;font-size:20px;color:#2b3a50;font-weight:600}
-   .feature p{margin:0;color:var(--muted);line-height:1.8}
-   /* Responsive */
-   @media (max-width: 980px){
-     .hero-grid{grid-template-columns:1fr}
-     .row-2{grid-template-columns:1fr}
-     .grid-3{grid-template-columns:1fr 1fr}
-     .section-head h2{font-size:34px}
-   }    @media (max-width: 620px){
-     .menu{display:none}
-     .grid-3{grid-template-columns:1fr}
-   }
-  /* Our Philosophy */
-   .philosophy{padding:60px 0;background:#fff}
-    .philosophy .space{height:10px}
-    .philosophy .panel-wrap{display:flex;justify-content:flex-end}
-    .philosophy .panel{background:var(--blue);color:#fff;border-radius:4px;padding:40px 42px;max-width:760px;box-shadow:var(--shadow)}
-    .philosophy .panel h3{margin:0 0 6px;font-size:34px;letter-spacing:.6px}
-    .philosophy .panel .sub{margin:0 0 18px;opacity:.95}
-    .philosophy .panel p{margin:0 0 18px;line-height:1.9;color:#e8f1fb}
-    .philosophy .panel .cta{margin-top:6px}
-    .btn-white{background:#fff;color:#1b2a41}
-    .btn-white:hover{filter:brightness(.98)}
-
-    /* Departments */
-    .departments{padding:60px 0;background:#fff}
-    .departments .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
-    .dept-card{background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;box-shadow:0 1px 0 rgba(16,24,40,.02)}
-    .dept-card img{width:100%;height:190px;object-fit:cover}
-    .dept-body{padding:16px 18px}
-    .dept-title{margin:0 0 8px;font-weight:700;color:#135fa8}
-    .dept-text{margin:0;color:var(--muted);line-height:1.8}
-
-    /* Latest News */
-    .news{padding:70px 0;background:#f7f9fc}
-    .news .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-    .post{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:var(--shadow)}
-    .post img{width:100%;height:220px;object-fit:cover}
-    .post-body{padding:18px}
-    .post-meta{display:flex;gap:12px;font-size:12px;color:#7a8899;margin-bottom:10px}
-    .post-title{margin:0 0 10px;font-size:18px;color:#24364a;font-weight:700;line-height:1.4}
-    .post-excerpt{margin:0 0 14px;color:var(--muted);line-height:1.8}
-    .post-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding:12px 18px;background:#fcfdff}
-    .read-more{color:#e53935;font-weight:600}
-
-    /* Footer (down of latest news content) */
-    .site-footer{background:#1c2430;color:#c9d3df;padding:44px 0 26px;margin-top:20px}
-    .site-footer .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
-   .foot-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
-    .tag-list{display:flex;flex-wrap:wrap;gap:10px}
-    .tag{padding:6px 10px;border:1px solid #324253;border-radius:18px;font-size:12px;color:#d5dee9}
-    .copyright{border-top:1px solid #2a394b;margin-top:26px;padding-top:18px;font-size:13px;color:#a6b3c3;display:flex;justify-content:space-between;align-items:center}
-
-    @media (max-width: 1080px){
-      .departments .grid-4{grid-template-columns:1fr 1fr 1fr}
-      .news .posts{grid-template-columns:1fr 1fr}
+     /* Easing for smoother interactions */
+     --ease: cubic-bezier(.22,.61,.36,1);
+     --ease-out: cubic-bezier(.16,1,.3,1);
     }
-    @media (max-width: 720px){
-      .departments .grid-4{grid-template-columns:1fr 1fr}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+    img,svg{display:block;backface-visibility:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    /* Header */
+    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
+    .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
+    .menu{display:flex;gap:26px;color:#222}
+    .menu a{font-weight:500;font-size:14px;opacity:.85}
+    .menu a:hover{opacity:1}
+    /* Hero appointment block */
+    .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+    .hero h3{margin:0 0 10px;font-size:24px;letter-spacing:.3px}
+    .underline{width:72px;height:3px;background:#f04a3b;margin:6px 0 18px}
+    .card{background:transparent}
+    .form{display:grid;grid-template-columns:1fr;gap:16px}
+    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{font-size:13px;opacity:.95;margin-bottom:6px;display:block}
+    .field{width:100%;height:48px;border-radius:4px;border:1px solid #dfe3eb;background:var(--field);padding:0 14px;font-size:14px;color:#1f2937}
+    .select{appearance:none;background:
+      linear-gradient(45deg,transparent 50%,#9aa3b2 50%) right 14px center/9px 9px no-repeat,
+      linear-gradient(135deg,transparent 50%,#9aa3b2 50%) right 9px center/9px 9px no-repeat,
+      var(--field);
+      padding-right:38px
     }
-    @media (max-width: 560px){
-      .departments .grid-4{grid-template-columns:1fr}
-      .news .posts{grid-template-columns:1fr}
-      .philosophy .panel-wrap{justify-content:center}
+    .actions{display:flex;gap:16px;align-items:center;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:4px;font-weight:600;border:0;cursor:pointer;box-shadow:var(--shadow)}
+    .btn-red{background:var(--red);color:#fff}
+    .btn-red:hover{filter:brightness(.95)}
+    .btn-green{background:var(--green);color:#fff}
+    .btn-green:hover{filter:brightness(.95)}
+   .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
+    /* Best Hospital section */
+    .features{padding:64px 0 84px;background:#fff}
+    .section-head{text-align:center;margin-bottom:30px}
+    .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
+   .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
+    .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
+    .icon-wrap{width:64px;height:64px;color:#d8433e;margin-bottom:16px}
+    .feature h4{margin:0 0 10px;font-size:20px;color:#2b3a50;font-weight:600}
+    .feature p{margin:0;color:var(--muted);line-height:1.8}
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .row-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .section-head h2{font-size:34px}
+    }    @media (max-width: 620px){
+      .menu{display:none}
+      .grid-3{grid-template-columns:1fr}
     }
+   /* Our Philosophy */
+    .philosophy{padding:60px 0;background:#fff}
+     .philosophy .space{height:10px}
+     .philosophy .panel-wrap{display:flex;justify-content:flex-end}
+     .philosophy .panel{background:var(--blue);color:#fff;border-radius:4px;padding:40px 42px;max-width:760px;box-shadow:var(--shadow)}
+     .philosophy .panel h3{margin:0 0 6px;font-size:34px;letter-spacing:.6px}
+     .philosophy .panel .sub{margin:0 0 18px;opacity:.95}
+     .philosophy .panel p{margin:0 0 18px;line-height:1.9;color:#e8f1fb}
+     .philosophy .panel .cta{margin-top:6px}
+     .btn-white{background:#fff;color:#1b2a41}
+     .btn-white:hover{filter:brightness(.98)}
 
-    /* Landing (MedicNotes) */
-    .landing{background:linear-gradient(135deg,#0f53a1 0%,#2a74d8 50%,#43a0ff 100%);color:#fff;position:relative;overflow:hidden;padding:70px 0}
-    .landing:before,.landing:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.15}
-    .landing:before{width:420px;height:420px;background:#fff;top:-120px;left:-120px}
-    .landing:after{width:520px;height:520px;background:#000;bottom:-160px;right:-160px}
-    .landing-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
-    .landing h1{margin:0 0 12px;font-weight:800;letter-spacing:.4px;font-size:clamp(28px,4.2vw,48px)}
-    .landing p{margin:0 0 22px;max-width:640px;color:#eaf2ff;font-size:16px}
-    .landing .cta .btn{height:50px}
-    .landing .cta .btn:first-child{background:#fff;color:#0b3a7e}
-    .landing .cta .btn:first-child:hover{filter:brightness(.98)}
-    .landing-visual{position:relative}
-    .landing-visual img{width:100%;max-width:520px;margin:0 auto;animation:float 6s ease-in-out infinite}
+     /* Departments */
+     .departments{padding:60px 0;background:#fff}
+     .departments .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+     .dept-card{background:#fff;border:1px solid var(--border);border-radius:4px;overflow:hidden;box-shadow:0 1px 0 rgba(16,24,40,.02)}
+     .dept-card img{width:100%;height:190px;object-fit:cover}
+     .dept-body{padding:16px 18px}
+     .dept-title{margin:0 0 8px;font-weight:700;color:#135fa8}
+     .dept-text{margin:0;color:var(--muted);line-height:1.8}
 
-    /* Animations */
-    @keyframes fadeUp{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+     /* Latest News */
+     .news{padding:70px 0;background:#f7f9fc}
+     .news .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+     .post{background:#fff;border:1px solid var(--border);border-radius:6px;overflow:hidden;box-shadow:var(--shadow)}
+     .post img{width:100%;height:220px;object-fit:cover}
+     .post-body{padding:18px}
+     .post-meta{display:flex;gap:12px;font-size:12px;color:#7a8899;margin-bottom:10px}
+     .post-title{margin:0 0 10px;font-size:18px;color:#24364a;font-weight:700;line-height:1.4}
+     .post-excerpt{margin:0 0 14px;color:var(--muted);line-height:1.8}
+     .post-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding:12px 18px;background:#fcfdff}
+     .read-more{color:#e53935;font-weight:600}
 
-    .features .feature{opacity:0;animation:fadeUp .8s ease forwards}
-    .features .feature:nth-child(1){animation-delay:.08s}
-    .features .feature:nth-child(2){animation-delay:.16s}
-    .features .feature:nth-child(3){animation-delay:.24s}
-    .features .feature:nth-child(4){animation-delay:.32s}
-    .features .feature:nth-child(5){animation-delay:.40s}
-    .features .feature:nth-child(6){animation-delay:.48s}
+     /* Footer (down of latest news content) */
+     .site-footer{background:#1c2430;color:#c9d3df;padding:44px 0 26px;margin-top:20px}
+     .site-footer .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+    .foot-list{display:grid;gap:12px;margin:0;padding:0;list-style:none}
+     .tag-list{display:flex;flex-wrap:wrap;gap:10px}
+     .tag{padding:6px 10px;border:1px solid #324253;border-radius:18px;font-size:12px;color:#d5dee9}
+     .copyright{border-top:1px solid #2a394b;margin-top:26px;padding-top:18px;font-size:13px;color:#a6b3c3;display:flex;justify-content:space-between;align-items:center}
 
-    .departments .dept-card{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease forwards}
-    .departments .dept-card:nth-child(odd){animation-delay:.12s}
-    .departments .dept-card:nth-child(even){animation-delay:.24s}
+     @media (max-width: 1080px){
+       .departments .grid-4{grid-template-columns:1fr 1fr 1fr}
+       .news .posts{grid-template-columns:1fr 1fr}
+     }
+     @media (max-width: 720px){
+       .departments .grid-4{grid-template-columns:1fr 1fr}
+     }
+     @media (max-width: 560px){
+       .departments .grid-4{grid-template-columns:1fr}
+       .news .posts{grid-template-columns:1fr}
+       .philosophy .panel-wrap{justify-content:center}
+     }
 
-    .news .post{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease .2s forwards}
+     /* Landing (MedicNotes) */
+     .landing{background:linear-gradient(135deg,#0f53a1 0%,#2a74d8 50%,#43a0ff 100%);color:#fff;position:relative;overflow:hidden;padding:70px 0}
+     .landing:before,.landing:after{content:"";position:absolute;border-radius:50%;filter:blur(40px);opacity:.15}
+     .landing:before{width:420px;height:420px;background:#fff;top:-120px;left:-120px}
+     .landing:after{width:520px;height:520px;background:#000;bottom:-160px;right:-160px}
+     .landing-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+     .landing h1{margin:0 0 12px;font-weight:800;letter-spacing:.4px;font-size:clamp(28px,4.2vw,48px)}
+     .landing p{margin:0 0 22px;max-width:640px;color:#eaf2ff;font-size:16px}
+     .landing .cta .btn{height:50px}
+     .landing .cta .btn:first-child{background:#fff;color:#0b3a7e}
+     .landing .cta .btn:first-child:hover{filter:brightness(.98)}
+     .landing-visual{position:relative}
+     .landing-visual img{width:100%;max-width:520px;margin:0 auto;animation:float 6s ease-in-out infinite;will-change:transform;transform:translateZ(0)}
 
-    @media (prefers-reduced-motion: reduce){      .landing-visual img{animation:none}      .features .feature,.departments .dept-card,.news .post{animation:none;opacity:1;transform:none}
-    }
+     /* Animations */
+     @keyframes fadeUp{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+     /* Remove immediate-on-load keyframe triggers in favor of intersection-based reveal */
+     /* (Handled by .reveal below) */
   </style>
   <style>
     /* Smooth interactions & scroll reveal */
     html{scroll-behavior:smooth}
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;will-change:transform,opacity}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease);will-change:transform,opacity}
     .reveal.in-view{opacity:1;transform:none}
     .reveal{transition-delay:var(--d,0s)}
-    .dept-card,.post,.feature{transition:transform .25s ease,box-shadow .25s ease}
+
+    /* Hover/active/focus interactions */
+    .dept-card,.post,.feature{transition:transform .35s var(--ease-out),box-shadow .35s var(--ease-out);will-change:transform}
     .dept-card:hover,.post:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(16,24,40,.1)}
-    .post img,.dept-card img{transition:transform .5s ease}
+    .feature:hover{transform:translateY(-4px)}
+    .post img,.dept-card img{transition:transform .6s var(--ease);transform-origin:center}
     .post:hover img,.dept-card:hover img{transform:scale(1.03)}
-    .btn{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+
+    .btn{transition:transform .25s var(--ease-out),filter .25s var(--ease-out),box-shadow .25s var(--ease-out)}
     .btn:hover{transform:translateY(-1px)}
-    a{transition:color .2s ease,opacity .2s ease}
+    .btn:active{transform:translateY(0);filter:brightness(.96)}
+    .btn:focus-visible{outline:2px solid rgba(19,95,168,.35);outline-offset:2px;transition:outline-color .2s var(--ease)}
+
+    .field{transition:border-color .25s var(--ease),box-shadow .25s var(--ease)}
+    .field:focus{border-color:#c8d4e5;box-shadow:0 0 0 3px rgba(19,95,168,.12)}
+
+    .tag{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+    .tag:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.15)}
+
+    a{transition:color .2s var(--ease),opacity .2s var(--ease)}
+
+    @media (hover:none){
+      .dept-card:hover,.post:hover,.feature:hover{transform:none;box-shadow:var(--shadow)}
+      .tag:hover{transform:none;box-shadow:none}
+    }
+
     @media (prefers-reduced-motion: reduce){
       .reveal{transition:none!important;opacity:1!important;transform:none!important}
-      .dept-card,.post,.feature,.btn{transition:none!important}
+      .dept-card,.post,.feature,.btn,.field,.tag{transition:none!important}
     }
   </style>
 </head>
@@ -214,14 +222,14 @@
   <section class="landing">
     <div class="container landing-grid">
       <div>
-        <h1>All your medical notes and appointments in one place.</h1>
-        <p>MedicNotes helps you securely manage medical records, track visits, and book appointments with ease. Stay organized and connected to your care, anytime.</p>
-        <div class="cta actions" style="margin-top:10px">
+        <h1 class="reveal" style="--d:.02s">All your medical notes and appointments in one place.</h1>
+        <p class="reveal" style="--d:.08s">MedicNotes helps you securely manage medical records, track visits, and book appointments with ease. Stay organized and connected to your care, anytime.</p>
+        <div class="cta actions reveal" style="margin-top:10px;--d:.14s">
           <a href="/login" class="btn">Login</a>
           <a href="#appointment" class="btn btn-red">Book Appointment</a>
         </div>
       </div>
-      <div class="landing-visual">
+      <div class="landing-visual reveal" style="--d:.12s">
         <img src="assets/image.png" alt="MedicNotes Illustration">
       </div>
     </div>
@@ -312,7 +320,7 @@
   <!-- Best Hospital In Town -->
   <section class="features">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal" style="--d:.02s">
         <h2>BEST HOSPITAL IN TOWN</h2>
         <p>When It Comes to Health Care</p>
       </div>
@@ -361,7 +369,7 @@
   <section class="philosophy">
     <div class="container">
       <div class="space"></div>
-      <div class="panel-wrap">+        <div class="panel">
+      <div class="panel-wrap">+        <div class="panel reveal" style="--d:.06s">
           <h3>OUR PHILOSOPHY</h3>
           <p class="sub">This is the subtitle for the heading</p>
           <p>Patients have an important role to play at each stage of their care and the five safety tips will serve to encourage them to be more involved in their health care.</p>
@@ -378,7 +386,7 @@
   <!-- Hospital Departments -->
   <section class="departments">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal" style="--d:.02s">
         <h2>HOSPITAL DEPARTMENTS</h2>
         <div class="underline" style="margin:10px auto 0"></div>
       </div>
@@ -446,7 +454,7 @@
   <!-- Latest News -->
   <section class="news">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal" style="--d:.02s">
         <h2>LATEST NEWS</h2>
         <div class="underline" style="margin:10px auto 0"></div>
       </div>
@@ -495,7 +503,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="grid-3">
-        <div>
+        <div class="reveal" style="--d:.05s">
           <h4 class="foot-title">CATEGORIES</h4>
           <ul class="foot-list">
             <li>Blogs</li>
@@ -504,7 +512,7 @@
             <li>Kids</li>
           </ul>
         </div>
-        <div>
+        <div class="reveal" style="--d:.10s">
           <h4 class="foot-title">TAGS</h4>
           <div class="tag-list">
             <span class="tag">Beach</span>
@@ -517,14 +525,14 @@
             <span class="tag">Rock</span>
           </div>
         </div>
-        <div>
+        <div class="reveal" style="--d:.15s">
           <h4 class="foot-title">RECENT COMMENTS</h4>
           <ul class="foot-list">
             <li>Aziz Rahman on<br>My kinda people, my kinda place</li>
           </ul>
         </div>
       </div>
-      <div class="copyright">
+      <div class="copyright reveal" style="--d:.22s">
         <span>© 2025 MedicNotes.</span>
         <span>Designed by MedicNotes</span>
       </div>
@@ -539,7 +547,7 @@
   if('IntersectionObserver'in window){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){if(entry.isIntersecting){activate(entry.target);io.unobserve(entry.target)}});
-    },{threshold:.18,rootMargin:'0px 0px -40px 0px'});
+    },{threshold:.18,rootMargin:'0px 0px -10% 0px'});
     els.forEach(function(el){io.observe(el)});
   }else{
     els.forEach(activate);
