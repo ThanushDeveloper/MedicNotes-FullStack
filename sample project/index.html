@@ -16,78 +16,70 @@
       --muted:#6b7c93;
       --red:#e53935;
       --green:#2e7d32;
-      --light:#f7f9fc;
-      --field:#ffffff;
-      --border:#e6e9ef;
-      --shadow:0 6px 18px rgba(16,24,40,.08);
-      --container:1140px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
-    img,svg{display:block}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
-
-    /* Header */
-    .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
-    .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
-    .menu{display:flex;gap:26px;color:#222}
-    .menu a{font-weight:500;font-size:14px;opacity:.85}
-    .menu a:hover{opacity:1}
-
-    /* Hero appointment block */
-    .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
-    .hero h3{margin:0 0 10px;font-size:24px;letter-spacing:.3px}
-    .underline{width:72px;height:3px;background:#f04a3b;margin:6px 0 18px}
-    .card{background:transparent}
-    .form{display:grid;grid-template-columns:1fr;gap:16px}
-    .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    label{font-size:13px;opacity:.95;margin-bottom:6px;display:block}
-    .field{width:100%;height:48px;border-radius:4px;border:1px solid #dfe3eb;background:var(--field);padding:0 14px;font-size:14px;color:#1f2937}
-    .select{appearance:none;background:
-      linear-gradient(45deg,transparent 50%,#9aa3b2 50%) right 14px center/9px 9px no-repeat,
-      linear-gradient(135deg,transparent 50%,#9aa3b2 50%) right 9px center/9px 9px no-repeat,
-      var(--field);
-      padding-right:38px
-    }
-    .actions{display:flex;gap:16px;align-items:center;margin-top:6px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:4px;font-weight:600;border:0;cursor:pointer;box-shadow:var(--shadow)}
-    .btn-red{background:var(--red);color:#fff}
-    .btn-red:hover{filter:brightness(.95)}
-    .btn-green{background:var(--green);color:#fff}
-    .btn-green:hover{filter:brightness(.95)}
-   .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
-
-    /* Best Hospital section */
-    .features{padding:64px 0 84px;background:#fff}
-    .section-head{text-align:center;margin-bottom:30px}
-    .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
-   .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
-
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
-    .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
-    .icon-wrap{width:64px;height:64px;color:#d8433e;margin-bottom:16px}
-    .feature h4{margin:0 0 10px;font-size:20px;color:#2b3a50;font-weight:600}
-    .feature p{margin:0;color:var(--muted);line-height:1.8}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .row-2{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr 1fr}
-      .section-head h2{font-size:34px}
-    }
-    @media (max-width: 620px){
-      .menu{display:none}
-      .grid-3{grid-template-columns:1fr}
-    }
-
-   /* Our Philosophy */
-    .philosophy{padding:60px 0;background:#fff}
+     --light:#f7f9fc;
+     --field:#ffffff;
+     --border:#e6e9ef;
+     --shadow:0 6px 18px rgba(16,24,40,.08);
+     --container:1140px;
+   }
+   *{box-sizing:border-box}
+   html,body{margin:0;padding:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:#fff}
+   img,svg{display:block}
+   a{color:inherit;text-decoration:none}
+   .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+   /* Header */
+   .topbar{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:50}
+   .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:#000}
+   .brand .logo-badge{width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;border:3px solid var(--red);color:var(--red);font-weight:800;font-size:14px}
+   .menu{display:flex;gap:26px;color:#222}
+   .menu a{font-weight:500;font-size:14px;opacity:.85}
+   .menu a:hover{opacity:1}
+   /* Hero appointment block */
+   .hero{background:var(--blue);color:#fff;padding:40px 0 44px}
+   .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+   .hero h3{margin:0 0 10px;font-size:24px;letter-spacing:.3px}
+   .underline{width:72px;height:3px;background:#f04a3b;margin:6px 0 18px}
+   .card{background:transparent}
+   .form{display:grid;grid-template-columns:1fr;gap:16px}
+   .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+   label{font-size:13px;opacity:.95;margin-bottom:6px;display:block}
+   .field{width:100%;height:48px;border-radius:4px;border:1px solid #dfe3eb;background:var(--field);padding:0 14px;font-size:14px;color:#1f2937}
+   .select{appearance:none;background:
+     linear-gradient(45deg,transparent 50%,#9aa3b2 50%) right 14px center/9px 9px no-repeat,
+     linear-gradient(135deg,transparent 50%,#9aa3b2 50%) right 9px center/9px 9px no-repeat,
+     var(--field);
+     padding-right:38px
+   }
+   .actions{display:flex;gap:16px;align-items:center;margin-top:6px}
+   .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:4px;font-weight:600;border:0;cursor:pointer;box-shadow:var(--shadow)}
+   .btn-red{background:var(--red);color:#fff}
+   .btn-red:hover{filter:brightness(.95)}
+   .btn-green{background:var(--green);color:#fff}
+   .btn-green:hover{filter:brightness(.95)}
+  .helper{font-size:13px;color:#e9eef7;opacity:.9;margin-top:14px}
+   /* Best Hospital section */
+   .features{padding:64px 0 84px;background:#fff}
+   .section-head{text-align:center;margin-bottom:30px}
+   .section-head h2{margin:0;color:var(--navy);font-weight:800;letter-spacing:.6px;font-size:42px}
+  .section-head p{margin:12px auto 0;color:var(--muted);max-width:720px}
+   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:48px 42px;margin-top:34px}
+   .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:6px 8px}
+   .icon-wrap{width:64px;height:64px;color:#d8433e;margin-bottom:16px}
+   .feature h4{margin:0 0 10px;font-size:20px;color:#2b3a50;font-weight:600}
+   .feature p{margin:0;color:var(--muted);line-height:1.8}
+   /* Responsive */
+   @media (max-width: 980px){
+     .hero-grid{grid-template-columns:1fr}
+     .row-2{grid-template-columns:1fr}
+     .grid-3{grid-template-columns:1fr 1fr}
+     .section-head h2{font-size:34px}
+   }    @media (max-width: 620px){
+     .menu{display:none}
+     .grid-3{grid-template-columns:1fr}
+   }
+  /* Our Philosophy */
+   .philosophy{padding:60px 0;background:#fff}
     .philosophy .space{height:10px}
     .philosophy .panel-wrap{display:flex;justify-content:flex-end}
     .philosophy .panel{background:var(--blue);color:#fff;border-radius:4px;padding:40px 42px;max-width:760px;box-shadow:var(--shadow)}
@@ -172,7 +164,25 @@
 
     .news .post{transform:translateY(10px);opacity:0;animation:fadeUp .7s ease .2s forwards}
 
-    @media (prefers-reduced-motion: reduce){+      .landing-visual img{animation:none}+      .features .feature,.departments .dept-card,.news .post{animation:none;opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){      .landing-visual img{animation:none}      .features .feature,.departments .dept-card,.news .post{animation:none;opacity:1;transform:none}
+    }
+  </style>
+  <style>
+    /* Smooth interactions & scroll reveal */
+    html{scroll-behavior:smooth}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;will-change:transform,opacity}
+    .reveal.in-view{opacity:1;transform:none}
+    .reveal{transition-delay:var(--d,0s)}
+    .dept-card,.post,.feature{transition:transform .25s ease,box-shadow .25s ease}
+    .dept-card:hover,.post:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(16,24,40,.1)}
+    .post img,.dept-card img{transition:transform .5s ease}
+    .post:hover img,.dept-card:hover img{transform:scale(1.03)}
+    .btn{transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    a{transition:color .2s ease,opacity .2s ease}
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none!important;opacity:1!important;transform:none!important}
+      .dept-card,.post,.feature,.btn{transition:none!important}
     }
   </style>
 </head>
@@ -307,42 +317,42 @@
         <p>When It Comes to Health Care</p>
       </div>
 
-      <div class="grid-3">
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 1 2 2v3a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v11a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v6a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2z"/></svg>
-          <h4>Powerful Theme Options</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+             <div class="grid-3">
+         <article class="feature reveal" style="--d:.05s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 1 2 2v3a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v11a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2zm6 0a2 2 0 0 1 2 2v6a2 2 0 1 1-2 0V5a2 2 0 0 1 2-2z"/></svg>
+           <h4>Powerful Theme Options</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
 
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a1 1 0 0 1 1 1v11H3V6a1 1 0 0 1 1-1zm-1 13h18v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1zm7-3h4a1 1 0 1 1 0 2H10a1 1 0 1 1 0-2z"/></svg>
-          <h4>Drag & Drop Page Builder</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+                 <article class="feature reveal" style="--d:.12s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16a1 1 0 0 1 1 1v11H3V6a1 1 0 0 1 1-1zm-1 13h18v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1zm7-3h4a1 1 0 1 1 0 2H10a1 1 0 1 1 0-2z"/></svg>
+           <h4>Drag & Drop Page Builder</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
 
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2a1 1 0 0 1 .8 1.6l-8.6 12-3.1 1.1 1.1-3.1 8.6-12A1 1 0 0 1 19 2zM5 20h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2z"/></svg>
-          <h4>Easy to Customize</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+                 <article class="feature reveal" style="--d:.18s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M19 2a1 1 0 0 1 .8 1.6l-8.6 12-3.1 1.1 1.1-3.1 8.6-12A1 1 0 0 1 19 2zM5 20h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2z"/></svg>
+           <h4>Easy to Customize</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
 
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12a2 2 0 0 1 2 2v16l-8-3-8 3V4a2 2 0 0 1 2-2z"/></svg>
-          <h4>Theme Documentation</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+                 <article class="feature reveal" style="--d:.24s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12a2 2 0 0 1 2 2v16l-8-3-8 3V4a2 2 0 0 1 2-2z"/></svg>
+           <h4>Theme Documentation</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
 
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm0 6h10v10H7V8z"/></svg>
-          <h4>Years of Experience</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+                 <article class="feature reveal" style="--d:.30s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2zm0 6h10v10H7V8z"/></svg>
+           <h4>Years of Experience</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
 
-        <article class="feature">
-          <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 3v14h10V5H7zm4 14h2v1h-2v-1z"/></svg>
-          <h4>Responsive Layout</h4>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
-        </article>
+                 <article class="feature reveal" style="--d:.36s">
+           <svg class="icon-wrap" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 3v14h10V5H7zm4 14h2v1h-2v-1z"/></svg>
+           <h4>Responsive Layout</h4>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+         </article>
       </div>
     </div>
   </section>
@@ -372,63 +382,63 @@
         <h2>HOSPITAL DEPARTMENTS</h2>
         <div class="underline" style="margin:10px auto 0"></div>
       </div>
-      <div class="grid-4">
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1580281657527-47c149bbedd7?q=80&w=1200&auto=format&fit=crop" alt="Cardiology">
-          <div class="dept-body">
-            <h4 class="dept-title">Cardiology</h4>
-            <p class="dept-text">Here's the story of a lovely lady, who was bringing up three very lovely...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop" alt="Dental">
-          <div class="dept-body">
-            <h4 class="dept-title">Dental</h4>
-            <p class="dept-text">We never thought of findin' a place where we belong. Don't have to stand...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Neurologist">
-          <div class="dept-body">
-            <h4 class="dept-title">Neurologist</h4>
-            <p class="dept-text">You unlock this door with the key of imagination. Beyond it is another dimension...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1560582861-45f4d0d04d5c?q=80&w=1200&auto=format&fit=crop" alt="Pediatric">
-          <div class="dept-body">
-            <h4 class="dept-title">Pediatric</h4>
-            <p class="dept-text">One thousand years ago, superstition and the sword ruled. It was a time of...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1200&auto=format&fit=crop" alt="Pulmonary">
-          <div class="dept-body">
-            <h4 class="dept-title">Pulmonary</h4>
-            <p class="dept-text">Life is like a hurricane here in Duckburg. Race cars, lasers, aeroplanes - it's...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1498550744921-75f79806b8a7?q=80&w=1200&auto=format&fit=crop" alt="Traumatology">
-          <div class="dept-body">
-            <h4 class="dept-title">Traumatology</h4>
-            <p class="dept-text">Your tread must be light and sure, as though your path were upon rice...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Urology">
-          <div class="dept-body">
-            <h4 class="dept-title">Urology</h4>
-            <p class="dept-text">They're creepy and they're kooky, mysterious and spooky. They're all together ooky...</p>
-          </div>
-        </article>
-        <article class="dept-card">
-          <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Xray">
-          <div class="dept-body">
-            <h4 class="dept-title">Xray</h4>
-            <p class="dept-text">I bet we been together for a million years, And I bet we'll be...</p>
-          </div>
-        </article>
+             <div class="grid-4">
+         <article class="dept-card reveal" style="--d:.05s">
+           <img src="https://images.unsplash.com/photo-1580281657527-47c149bbedd7?q=80&w=1200&auto=format&fit=crop" alt="Cardiology">
+           <div class="dept-body">
+             <h4 class="dept-title">Cardiology</h4>
+             <p class="dept-text">Here's the story of a lovely lady, who was bringing up three very lovely...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.12s">
+           <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop" alt="Dental">
+           <div class="dept-body">
+             <h4 class="dept-title">Dental</h4>
+             <p class="dept-text">We never thought of findin' a place where we belong. Don't have to stand...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.18s">
+           <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Neurologist">
+           <div class="dept-body">
+             <h4 class="dept-title">Neurologist</h4>
+             <p class="dept-text">You unlock this door with the key of imagination. Beyond it is another dimension...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.24s">
+           <img src="https://images.unsplash.com/photo-1560582861-45f4d0d04d5c?q=80&w=1200&auto=format&fit=crop" alt="Pediatric">
+           <div class="dept-body">
+             <h4 class="dept-title">Pediatric</h4>
+             <p class="dept-text">One thousand years ago, superstition and the sword ruled. It was a time of...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.30s">
+           <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?q=80&w=1200&auto=format&fit=crop" alt="Pulmonary">
+           <div class="dept-body">
+             <h4 class="dept-title">Pulmonary</h4>
+             <p class="dept-text">Life is like a hurricane here in Duckburg. Race cars, lasers, aeroplanes - it's...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.36s">
+           <img src="https://images.unsplash.com/photo-1498550744921-75f79806b8a7?q=80&w=1200&auto=format&fit=crop" alt="Traumatology">
+           <div class="dept-body">
+             <h4 class="dept-title">Traumatology</h4>
+             <p class="dept-text">Your tread must be light and sure, as though your path were upon rice...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.42s">
+           <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop" alt="Urology">
+           <div class="dept-body">
+             <h4 class="dept-title">Urology</h4>
+             <p class="dept-text">They're creepy and they're kooky, mysterious and spooky. They're all together ooky...</p>
+           </div>
+         </article>
+                 <article class="dept-card reveal" style="--d:.48s">
+           <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Xray">
+           <div class="dept-body">
+             <h4 class="dept-title">Xray</h4>
+             <p class="dept-text">I bet we been together for a million years, And I bet we'll be...</p>
+           </div>
+         </article>
       </div>
     </div>
   </section>
@@ -440,43 +450,43 @@
         <h2>LATEST NEWS</h2>
         <div class="underline" style="margin:10px auto 0"></div>
       </div>
-      <div class="posts">
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="Post 1">
-          <div class="post-body">
-            <div class="post-meta"><span>Health</span><span>•</span><span>Feb 12, 2025</span></div>
-            <h3 class="post-title">5 Safety Tips For Patients To Improve Care</h3>
-            <p class="post-excerpt">Patients can do a lot of small things to make their health-care experience as safe as possible and be more involved in their health care...</p>
-          </div>
-          <div class="post-footer">
-            <a class="read-more" href="#">Read More</a>
-            <span style="font-size:12px;color:#7a8899">12 Comments</span>
-          </div>
-        </article>
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Post 2">
-          <div class="post-body">
-            <div class="post-meta"><span>Wellness</span><span>•</span><span>Jan 29, 2025</span></div>
-            <h3 class="post-title">How To Prepare For Your Next Appointment</h3>
-            <p class="post-excerpt">From scheduling to follow-up, these practical steps help you get the most out of your visit while keeping you informed every step of the way...</p>
-          </div>
-          <div class="post-footer">
-            <a class="read-more" href="#">Read More</a>
-            <span style="font-size:12px;color:#7a8899">8 Comments</span>
-          </div>
-        </article>
-        <article class="post">
-          <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1200&auto=format&fit=crop" alt="Post 3">
-          <div class="post-body">
-            <div class="post-meta"><span>News</span><span>•</span><span>Jan 10, 2025</span></div>
-            <h3 class="post-title">Modern Imaging: What Patients Should Know</h3>
-            <p class="post-excerpt">Advancements in medical imaging improve diagnosis and outcomes. Here’s a quick overview of what to expect and how to prepare for scans...</p>
-          </div>
-          <div class="post-footer">
-            <a class="read-more" href="#">Read More</a>
-            <span style="font-size:12px;color:#7a8899">5 Comments</span>
-          </div>
-        </article>
+             <div class="posts">
+         <article class="post reveal" style="--d:.05s">
+           <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="Post 1">
+           <div class="post-body">
+             <div class="post-meta"><span>Health</span><span>•</span><span>Feb 12, 2025</span></div>
+             <h3 class="post-title">5 Safety Tips For Patients To Improve Care</h3>
+             <p class="post-excerpt">Patients can do a lot of small things to make their health-care experience as safe as possible and be more involved in their health care...</p>
+           </div>
+           <div class="post-footer">
+             <a class="read-more" href="#">Read More</a>
+             <span style="font-size:12px;color:#7a8899">12 Comments</span>
+           </div>
+         </article>
+                 <article class="post reveal" style="--d:.12s">
+           <img src="https://images.unsplash.com/photo-1584982751683-5f4a7a5d07cf?q=80&w=1200&auto=format&fit=crop" alt="Post 2">
+           <div class="post-body">
+             <div class="post-meta"><span>Wellness</span><span>•</span><span>Jan 29, 2025</span></div>
+             <h3 class="post-title">How To Prepare For Your Next Appointment</h3>
+             <p class="post-excerpt">From scheduling to follow-up, these practical steps help you get the most out of your visit while keeping you informed every step of the way...</p>
+           </div>
+           <div class="post-footer">
+             <a class="read-more" href="#">Read More</a>
+             <span style="font-size:12px;color:#7a8899">8 Comments</span>
+           </div>
+         </article>
+                 <article class="post reveal" style="--d:.18s">
+           <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=1200&auto=format&fit=crop" alt="Post 3">
+           <div class="post-body">
+             <div class="post-meta"><span>News</span><span>•</span><span>Jan 10, 2025</span></div>
+             <h3 class="post-title">Modern Imaging: What Patients Should Know</h3>
+             <p class="post-excerpt">Advancements in medical imaging improve diagnosis and outcomes. Here’s a quick overview of what to expect and how to prepare for scans...</p>
+           </div>
+           <div class="post-footer">
+             <a class="read-more" href="#">Read More</a>
+             <span style="font-size:12px;color:#7a8899">5 Comments</span>
+           </div>
+         </article>
       </div>
     </div>
   </section>
@@ -520,7 +530,22 @@
       </div>
     </div>
   </footer>
+ 
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.reveal'));
+  if(!els.length) return;
+  var activate=function(el){el.classList.add('in-view')};
+  if('IntersectionObserver'in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){if(entry.isIntersecting){activate(entry.target);io.unobserve(entry.target)}});
+    },{threshold:.18,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  }else{
+    els.forEach(activate);
+  }
+})();
+</script>
 
 </body>
 </html>
-
