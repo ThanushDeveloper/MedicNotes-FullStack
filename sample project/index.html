@@ -241,6 +241,15 @@
      [data-theme="dark"] .site-footer{background:#000000;color:#c9d3df}
      [data-theme="dark"] .copyright{border-top-color:#262626}
      [data-theme="dark"] .tag{border:1px solid #2a2a2a;color:#d0d0d0}
+     /* Dark theme section separation and alternating surfaces */
+     [data-theme="dark"]{--surface-1:#0a0a0a;--surface-2:#0d0d0d;--surface-3:#111111;--surface-4:#141414;--divider-weak:rgba(255,255,255,.06);--divider-strong:rgba(255,255,255,.10)}
+     [data-theme="dark"] .landing{background:linear-gradient(135deg,#0a0a0a 0%,#131313 50%,#1a1a1a 100%);transition:background .4s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .hero{background:linear-gradient(180deg,#0d0d0d 0%,#151515 100%);transition:background .4s var(--ease),color .35s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .features{background:#0e0e0e;box-shadow:inset 0 1px 0 var(--divider-weak),inset 0 -1px 0 var(--divider-weak);transition:background-color .4s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .philosophy{background:#101010;box-shadow:inset 0 1px 0 var(--divider-weak),inset 0 -1px 0 var(--divider-weak);transition:background-color .4s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .departments{background:#0c0c0c;box-shadow:inset 0 1px 0 var(--divider-weak),inset 0 -1px 0 var(--divider-weak);transition:background-color .4s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .news{background:#0a0a0a;box-shadow:inset 0 1px 0 var(--divider-weak),inset 0 -1px 0 var(--divider-weak);transition:background-color .4s var(--ease),box-shadow .35s var(--ease)}
+     [data-theme="dark"] .site-footer{background:#000000;box-shadow:inset 0 1px 0 var(--divider-strong);transition:background-color .4s var(--ease),box-shadow .35s var(--ease)}
    </style>
 </head>
 <body>
