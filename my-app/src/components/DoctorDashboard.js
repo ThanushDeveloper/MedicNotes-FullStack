@@ -12,7 +12,11 @@ function DoctorDashboard() {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
+    <div className="ddud-root bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
+      <style>{`
+        .ddud-root{ --primary-color:#059669; --sidebar-bg:#065f46; }
+        .ddud-root .bg-primary\/20 { background-color: rgba(5,150,105,0.2); }
+      `}</style>
       {/* Mobile menu overlay */}
       <div id="mobile-overlay" className="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
 
