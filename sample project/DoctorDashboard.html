@@ -1,1118 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#059669',
-                        sidebar: '#065f46',
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Dashboard</title>
+  <style>
+    :root { --primary:#059669; --sidebar:#065f46; --white:#fff; --black:#000; --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db; --gray-400:#9ca3af; --gray-500:#6b7280; --gray-600:#4b5563; --gray-700:#374151; --gray-800:#1f2937; --gray-900:#111827; --red-100:#fee2e2; --red-400:#f87171; --red-500:#ef4444; --red-800:#991b1b; --red-900:#7f1d1d; --green-50:#f0fdf4; --green-100:#dcfce7; --green-400:#4ade80; --green-500:#22c55e; --green-600:#16a34a; --green-800:#166534; --green-900:#052e16; --blue-50:#eff6ff; --blue-100:#dbeafe; --blue-400:#60a5fa; --blue-500:#3b82f6; --blue-600:#2563eb; --blue-900:#172554; --yellow-50:#fffbeb; --yellow-100:#fef3c7; --yellow-400:#facc15; --yellow-500:#eab308; --yellow-600:#ca8a04; --yellow-800:#854d0e; --yellow-900:#422006; --purple-50:#faf5ff; --purple-100:#e9d5ff; --purple-400:#c084fc; --purple-600:#7c3aed; --purple-900:#3b0764; }
+    .dark { --bg-page:var(--gray-900); --bg-elev-1:var(--gray-800); --text-primary:var(--white); --text-secondary:var(--gray-300); --text-muted:var(--gray-400); --border:var(--gray-700); }
+    html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}body{margin:0}.font-sans{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    .bg-gray-50{background-color:var(--gray-50)}.dark .bg-gray-900,body.dark{background-color:var(--gray-900)}.dark .dark\:bg-gray-900{background-color:var(--gray-900)!important}.dark .dark\:bg-gray-800{background-color:var(--gray-800)!important}.bg-white{background-color:var(--white)}.bg-sidebar{background-color:var(--sidebar)}
+    .bg-black{background-color:var(--black)}.bg-opacity-50{opacity:.5}.bg-blue-50{background-color:var(--blue-50)}.bg-blue-100{background-color:var(--blue-100)}.bg-green-50{background-color:var(--green-50)}.bg-green-100{background-color:var(--green-100)}.bg-purple-50{background-color:var(--purple-50)}.bg-purple-100{background-color:var(--purple-100)}.bg-yellow-50{background-color:var(--yellow-50)}.bg-yellow-100{background-color:var(--yellow-100)}.bg-red-100{background-color:var(--red-100)}
+    .dark .dark\:bg-blue-900{background-color:var(--blue-900)!important}.dark .dark\:bg-green-900{background-color:var(--green-900)!important}.dark .dark\:bg-purple-900{background-color:var(--purple-900)!important}.dark .dark\:bg-yellow-900{background-color:var(--yellow-900)!important}.dark .dark\:bg-green-900\/20{background-color:rgba(5,46,22,.2)!important}.dark .dark\:bg-blue-900\/20{background-color:rgba(23,37,84,.2)!important}.dark .dark\:bg-purple-900\/20{background-color:rgba(59,7,100,.2)!important}.dark .dark\:bg-yellow-900\/20{background-color:rgba(66,32,6,.2)!important}
+    .text-white{color:var(--white)}.text-gray-900{color:var(--gray-900)}.text-gray-800{color:var(--gray-800)}.text-gray-700{color:var(--gray-700)}.text-gray-600{color:var(--gray-600)}.text-gray-500{color:var(--gray-500)}.text-gray-400{color:var(--gray-400)}.text-blue-600{color:var(--blue-600)}.text-blue-400{color:var(--blue-400)}.text-green-600{color:var(--green-600)}.text-green-400{color:var(--green-400)}.text-green-200{color:#bbf7d0}.text-yellow-600{color:var(--yellow-600)}.text-yellow-400{color:var(--yellow-400)}.text-red-600{color:var(--red-500)}.text-red-400{color:var(--red-400)}
+    .dark .dark\:text-white{color:var(--white)!important}.dark .dark\:text-gray-300{color:var(--gray-300)!important}.dark .dark\:text-gray-200{color:#e5e7eb!important}.dark .dark\:text-gray-400{color:var(--gray-400)!important}.dark .dark\:text-green-400{color:var(--green-400)!important}.dark .dark\:text-yellow-400{color:var(--yellow-400)!important}.dark .dark\:text-red-400{color:var(--red-400)!important}
+    .text-primary{color:var(--primary)}.bg-primary{background-color:var(--primary)}.bg-primary\/20{background-color:rgba(5,150,105,.2)}.border-primary{border-color:var(--primary)}
+    .hover\:bg-white\/10:hover{background-color:rgba(255,255,255,.1)}.hover\:bg-gray-100:hover{background-color:var(--gray-100)}.hover\:bg-green-600:hover{background-color:var(--green-600)}.hover\:bg-blue-700:hover{background-color:#1d4ed8}.hover\:text-green-600:hover{color:var(--green-600)}.hover\:text-blue-800:hover{color:#1e40af}.dark .dark\:hover\:bg-gray-700:hover{background-color:var(--gray-700)}
+    .border{border:1px solid var(--gray-200)}.border-b{border-bottom:1px solid var(--gray-200)}.border-l-4{border-left:4px solid}.border-gray-200{border-color:var(--gray-200)}.border-gray-300{border-color:var(--gray-300)}.border-white{border-color:var(--white)}.dark .dark\:border-gray-600{border-color:var(--gray-600)!important}.dark .dark\:border-gray-700{border-color:var(--gray-700)!important}
+    .rounded-md{border-radius:.375rem}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.rounded-full{border-radius:9999px}.shadow-sm{box-shadow:0 1px 2px rgba(0,0,0,.06),0 1px 1px rgba(0,0,0,.04)}
+    .p-2{padding:.5rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pl-10{padding-left:2.5rem}.pr-4{padding-right:1rem}
+    .mt-1{margin-top:.25rem}.mr-2{margin-right:.5rem}.mr-3{margin-right:.75rem}.ml-4{margin-left:1rem}.mx-2{margin-left:.5rem;margin-right:.5rem}.space-y-2>*+*{margin-top:.5rem}.space-y-4>*+*{margin-top:1rem}.space-y-6>*+*{margin-top:1.5rem}.space-x-2>*+*{margin-left:.5rem}.space-x-3>*+*{margin-left:.75rem}.space-x-4>*+*{margin-left:1rem}
+    .flex{display:flex}.flex-col{flex-direction:column}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.items-center{align-items:center}.justify-between{justify-content:space-between}.text-left{text-align:left}.text-right{text-align:right}.text-center{text-align:center}
+    .w-full{width:100%}.w-64{width:16rem}.w-12{width:3rem}.h-12{height:3rem}.w-10{width:2.5rem}.h-10{height:2.5rem}.w-8{width:2rem}.h-8{height:2rem}.w-6{width:1.5rem}.h-6{height:1.5rem}.w-5{width:1.25rem}.w-3{width:.75rem}.h-3{height:.75rem}.w-2{width:.5rem}.h-2{height:.5rem}.w-24{width:6rem}.h-24{height:6rem}.h-full{height:100%}.object-cover{object-fit:cover}
+    .relative{position:relative}.absolute{position:absolute}.fixed{position:fixed}.inset-0{top:0;right:0;bottom:0;left:0}.left-0{left:0}.top-0{top:0}.bottom-0{bottom:0}.right-0{right:0}.left-3{left:.75rem}.top-1\/2{top:50%}. -top-1{top:-.25rem}. -right-1{right:-.25rem}
+    .-translate-y-1\/2{transform:translateY(-50%)}.-translate-x-full{transform:translateX(-100%)}.transform{will-change:transform}.transition-all{transition:all .3s ease-in-out}.transition-colors{transition:color .3s ease,background-color .3s ease,border-color .3s ease}.duration-300{transition-duration:.3s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}
+    .z-40{z-index:40}.z-50{z-index:50}.hidden{display:none!important}.block{display:block}
+    .uppercase{text-transform:uppercase}.font-bold{font-weight:700}.font-semibold{font-weight:600}.font-medium{font-weight:500}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}
+    .focus\:outline-none:focus{outline:none}.focus\:ring-2:focus{box-shadow:0 0 0 2px var(--primary)}.focus\:ring-primary:focus{box-shadow:0 0 0 2px var(--primary)}.focus\:border-transparent:focus{border-color:transparent}
+    .overflow-x-auto{overflow-x:auto}table{border-collapse:separate;border-spacing:0;width:100%}th{font-weight:600;font-size:.75rem;letter-spacing:.02em;text-transform:uppercase}td,th{padding:.75rem 1.5rem}.divide-y>*+*{border-top:1px solid var(--gray-200)}.dark .dark\:divide-gray-700>*+*{border-top-color:var(--gray-700)!important}
+    header.shadow-sm{backdrop-filter:saturate(180%) blur(2px)}input[type=text]{font:inherit;color:inherit;background:var(--white);border-radius:.5rem;border:1px solid var(--gray-300)}.dark input[type=text]{background:var(--gray-700);color:var(--white);border-color:var(--gray-600)}
+    @media(min-width:640px){.sm\:block{display:block!important}.sm\:hidden{display:none!important}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:justify-between{justify-content:space-between}.sm\:space-y-0>*+*{margin-top:0!important}.sm\:space-x-3>*+*{margin-left:.75rem}.sm\:space-x-6>*+*{margin-left:1.5rem}.sm\:w-64{width:16rem}}
+    @media(min-width:768px){.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(min-width:1024px){.lg\:ml-64{margin-left:16rem}.lg\:hidden{display:none!important}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:justify-between{justify-content:space-between}.lg\:space-y-0>*+*{margin-top:0!important}.lg\:translate-x-0{transform:translateX(0)}.lg\:p-6{padding:1.5rem}}
+    @media(min-width:1280px){.xl\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.xl\:col-span-2{grid-column:span 2/span 2}.xl\:col-span-1{grid-column:span 1/span 1}}
+    .grid{display:grid}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gap-4{gap:1rem}.gap-6{gap:1.5rem}
+    .nav-link{color:#d1fae5;text-decoration:none}.nav-link:hover{text-decoration:none}
+    i.fas,i.far,i.fa{position:relative;display:inline-block;width:1em;height:1em;line-height:1}i.fas:before,i.far:before,i.fa:before{content:"";position:absolute;inset:0;background-color:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
+    .w-5 i.fas:before,i.fas.w-5:before{width:1.25rem;height:1.25rem}.w-12 i.fas:before,i.fas.w-12:before{width:3rem;height:3rem}
+    .fa-bars:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132c0-13.3 10.7-24 24-24h368c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24zm0 124c0-13.3 10.7-24 24-24h368c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24zm24 100c-13.3 0-24 10.7-24 24s10.7 24 24 24h368c13.3 0 24-10.7 24-24s-10.7-24-24-24H40z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M16 132c0-13.3 10.7-24 24-24h368c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24zm0 124c0-13.3 10.7-24 24-24h368c13.3 0 24 10.7 24 24s-10.7 24-24 24H40c-13.3 0-24-10.7-24-24zm24 100c-13.3 0-24 10.7-24 24s10.7 24 24 24h368c13.3 0 24-10.7 24-24s-10.7-24-24-24H40z"/></svg>') }
+    .fa-search:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c28.4-34.9 45.4-79.4 45.4-127.9C426 88.3 337.7 0 229 0S32 88.3 32 196.1 120.3 392.2 229 392.2c48.5 0 93-17 127.9-45.4l119.7 119.7c4.5 4.5 10.6 6.8 16.6 6.8s12.1-2.3 16.6-6.8c9-9.1 9-23.8-.5-32.6zM229 344.2c-81.7 0-148.1-66.4-148.1-148.1S147.3 48 229 48s148.1 66.4 148.1 148.1S310.7 344.2 229 344.2z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c28.4-34.9 45.4-79.4 45.4-127.9C426 88.3 337.7 0 229 0S32 88.3 32 196.1 120.3 392.2 229 392.2c48.5 0 93-17 127.9-45.4l119.7 119.7c4.5 4.5 10.6 6.8 16.6 6.8s12.1-2.3 16.6-6.8c9-9.1 9-23.8-.5-32.6zM229 344.2c-81.7 0-148.1-66.4-148.1-148.1S147.3 48 229 48s148.1 66.4 148.1 148.1S310.7 344.2 229 344.2z"/></svg>') }
+    .fa-bell:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 512c35.3 0 63.1-28.7 63.1-64H160.9c0 35.3 27.8 64 63.1 64zm215.4-149.7c-20.3-20.9-55.5-52.6-55.5-154.3 0-77.7-54.5-139.5-127.9-155V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v20.9C126.5 61.6 72 123.4 72 201c0 101.8-35.3 133.5-55.6 154.3-6 6.1-8.4 14-7 22 2.3 12.7 13.5 21.7 26.4 21.7h388.6c12.9 0 24.1-9 26.4-21.7 1.4-8-1-15.9-7-22z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 512c35.3 0 63.1-28.7 63.1-64H160.9c0 35.3 27.8 64 63.1 64zm215.4-149.7c-20.3-20.9-55.5-52.6-55.5-154.3 0-77.7-54.5-139.5-127.9-155V32c0-17.7-14.3-32-32-32s-32 14.3-32 32v20.9C126.5 61.6 72 123.4 72 201c0 101.8-35.3 133.5-55.6 154.3-6 6.1-8.4 14-7 22 2.3 12.7 13.5 21.7 26.4 21.7h388.6c12.9 0 24.1-9 26.4-21.7 1.4-8-1-15.9-7-22z"/></svg>') }
+    .fa-chevron-down:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-16.981-16.981-4.955-46.099 19.028-46.099h384.572c24 0 36.011 29.091 19.028 46.099L240.971 381.476c-10.513 10.513-27.572 10.513-38.942 0z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M207.029 381.476L12.686 187.132c-16.981-16.981-4.955-46.099 19.028-46.099h384.572c24 0 36.011 29.091 19.028 46.099L240.971 381.476c-10.513 10.513-27.572 10.513-38.942 0z"/></svg>') }
+    .fa-chevron-right:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M64 448c-8.188 0-16.38-3.125-22.62-9.375C31.56 428.8 31.56 413.2 41.38 403.4L178.8 266 41.38 128.6C31.56 118.8 31.56 103.2 41.38 93.38 51.19 83.56 66.81 83.56 76.62 93.38l160 160c9.812 9.812 9.812 25.81 0 35.62l-160 160C80.38 444.9 72.19 448 64 448z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M64 448c-8.188 0-16.38-3.125-22.62-9.375C31.56 428.8 31.56 413.2 41.38 403.4L178.8 266 41.38 128.6C31.56 118.8 31.56 103.2 41.38 93.38 51.19 83.56 66.81 83.56 76.62 93.38l160 160c9.812 9.812 9.812 25.81 0 35.62l-160 160C80.38 444.9 72.19 448 64 448z"/></svg>') }
+    .fa-home:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M541 229.16l-61-50.88V64a16 16 0 0 0-16-16h-48a16 16 0 0 0-16 16v51.61L314.47 43a35.33 35.33 0 0 0-44.94 0L35 229.16a16 16 0 0 0-2 22.59l21.4 25.72a16 16 0 0 0 22.59 2L96 265.54V464a48 48 0 0 0 48 48h96V352h96v160h96a48 48 0 0 0 48-48V265.54l19 14a16 16 0 0 0 22.59-2l21.4-25.72a16 16 0 0 0-2-22.59z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M541 229.16l-61-50.88V64a16 16 0 0 0-16-16h-48a16 16 0 0 0-16 16v51.61L314.47 43a35.33 35.33 0 0 0-44.94 0L35 229.16a16 16 0 0 0-2 22.59l21.4 25.72a16 16 0 0 0 22.59 2L96 265.54V464a48 48 0 0 0 48 48h96V352h96v160h96a48 48 0 0 0 48-48V265.54l19 14a16 16 0 0 0 22.59-2l21.4-25.72a16 16 0 0 0-2-22.59z"/></svg>') }
+    .fa-users:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96 224a80 80 0 1 0 0-160 80 80 0 0 0 0 160zm448 0a80 80 0 1 0 0-160 80 80 0 0 0 0 160zM320 256c-88.4 0-160 71.6-160 160v16h320v-16c0-88.4-71.6-160-160-160z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M96 224a80 80 0 1 0 0-160 80 80 0 0 0 0 160zm448 0a80 80 0 1 0 0-160 80 80 0 0 0 0 160zM320 256c-88.4 0-160 71.6-160 160v16h320v-16c0-88.4-71.6-160-160-160z"/></svg>') }
+    .fa-calendar-check:before,.fa-calendar-plus:before,.fa-calendar:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M152 64h-24V24a24 24 0 0 0-48 0v40H48A48 48 0 0 0 0 112v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48h-32V24a24 24 0 0 0-48 0v40H200V24a24 24 0 0 0-48 0v40z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M152 64h-24V24a24 24 0 0 0-48 0v40H48A48 48 0 0 0 0 112v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V112a48 48 0 0 0-48-48h-32V24a24 24 0 0 0-48 0v40H200V24a24 24 0 0 0-48 0v40z"/></svg>') }
+    .fa-prescription-bottle:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32h320v64H64zM64 128h320v320a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V128zm64 80v48h64v-48h-64zm128 0v48h64v-48h-64z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32h320v64H64zM64 128h320v320a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V128zm64 80v48h64v-48h-64zm128 0v48h64v-48h-64z"/></svg>') }
+    .fa-chart-line:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500 384h-20V92c0-6.6-5.4-12-12-12H44c-6.6 0-12 5.4-12 12v20H12c-6.6 0-12 5.4-12 12v348c0 6.6 5.4 12 12 12h488c6.6 0 12-5.4 12-12v-76c0-6.6-5.4-12-12-12zM160 320l96-96 64 64 128-128v64L320 352l-64-64-96 96v-64z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500 384h-20V92c0-6.6-5.4-12-12-12H44c-6.6 0-12 5.4-12 12v20H12c-6.6 0-12 5.4-12 12v348c0 6.6 5.4 12 12 12h488c6.6 0 12-5.4 12-12v-76c0-6.6-5.4-12-12-12zM160 320l96-96 64 64 128-128v64L320 352l-64-64-96 96v-64z"/></svg>') }
+    .fa-chart-bar:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500 384H52c-6.6 0-12-5.4-12-12V44c0-6.6-5.4-12-12-12H12C5.4 32 0 37.4 0 44v348c0 6.6 5.4 12 12 12h488c6.6 0 12-5.4 12-12v-36c0-6.6-5.4-12-12-12zM96 320h64V160H96v160zm128 0h64V96h-64v224zm128 0h64V224h-64v96z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500 384H52c-6.6 0-12-5.4-12-12V44c0-6.6-5.4-12-12-12H12C5.4 32 0 37.4 0 44v348c0 6.6 5.4 12 12 12h488c6.6 0 12-5.4 12-12v-36c0-6.6-5.4-12-12-12zM96 320h64V160H96v160zm128 0h64V96h-64v224zm128 0h64V224h-64v96z"/></svg>') }
+    .fa-cog:before,.fa-user-cog:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.5-24.6c2.7-14.6 2.7-29.6 0-44.3l42.5-24.6c8.4-4.9 11.4-15.6 6.5-24l-45.5-78.8c-4.9-8.4-15.6-11.4-24-6.5l-42.5 24.6c-11.5-9.8-24.3-17.7-38.2-23.3V48c0-9.7-7.9-17.6-17.6-17.6h-91c-9.7 0-17.6 7.9-17.6 17.6v49.5c-13.9 5.6-26.7 13.5-38.2 23.3L87.6 96.7c-8.4-4.9-19.1-1.9-24 6.5L18.1 182c-4.9 8.4-1.9 19.1 6.5 24l42.5 24.6c-2.7 14.6-2.7 29.6 0 44.3l-42.5 24.6c-8.4 4.9-11.4 15.6-6.5 24l45.5 78.8c4.9 8.4 15.6 11.4 24 6.5l42.5-24.6c11.5 9.8 24.3 17.7 38.2 23.3V464c0 9.7 7.9 17.6 17.6 17.6h91c9.7 0 17.6-7.9 17.6-17.6v-49.5c13.9-5.6 26.7-13.5 38.2-23.3l42.5 24.6c8.4 4.9 19.1 1.9 24-6.5l45.5-78.8c4.9-8.4 1.9-19.1-6.5-24zM256 336c-44.1 0-80-35.9-80-80 0-44.2 35.9-80 80-80s80 35.8 80 80c0 44.1-35.9 80-80 80z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.5-24.6c2.7-14.6 2.7-29.6 0-44.3l42.5-24.6c8.4-4.9 11.4-15.6 6.5-24l-45.5-78.8c-4.9-8.4-15.6-11.4-24-6.5l-42.5 24.6c-11.5-9.8-24.3-17.7-38.2-23.3V464c0 9.7 7.9 17.6 17.6 17.6h91c9.7 0 17.6-7.9 17.6-17.6v-49.5c13.9-5.6 26.7-13.5 38.2-23.3l42.5 24.6c8.4 4.9 19.1 1.9 24-6.5l45.5-78.8c4.9-8.4 1.9-19.1-6.5-24zM256 336c-44.1 0-80-35.9-80-80 0-44.2 35.9-80 80-80s80 35.8 80 80c0 44.1-35.9 80-80 80z"/></svg>') }
+    .fa-user:before,.fa-user-md:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256a128 128 0 1 0-128-128 128 128 0 0 0 128 128zm89.6 32h-11.7a174.64 174.64 0 0 1-155.8 0h-11.7A134.39 134.39 0 0 0 0 422.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-41.6A134.39 134.39 0 0 0 313.6 288z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256a128 128 0 1 0-128-128 128 128 0 0 0 128 128zm89.6 32h-11.7a174.64 174.64 0 0 1-155.8 0h-11.7A134.39 134.39 0 0 0 0 422.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-41.6A134.39 134.39 0 0 0 313.6 288z"/></svg>') }
+    .fa-envelope:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8L327.4 338c-15.4 12.8-38.5 12.8-53.9 0L9.7 190.8C3.9 186.1 0 178.9 0 171.2V80c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v91.2c0 7.7-3.9 14.9-9.7 19.6z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8L327.4 338c-15.4 12.8-38.5 12.8-53.9 0L9.7 190.8C3.9 186.1 0 178.9 0 171.2V80c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v91.2c0 7.7-3.9 14.9-9.7 19.6z"/></svg>') }
+    .fa-phone:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M493.4 24.6l-104-24c-11.2-2.6-22.6 3.3-27.2 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60 49.6c-36.2 76.7-99.4 139.9-176.1 176.1l-49.6-60c-6.7-8.3-18.2-11.1-28-6.9l-112 48C38 367 32.2 378.2 34.8 389.4l24 104C62 505.7 72.1 512 82.3 512c247.4 0 448-200.6 448-448 0-10.2-6.3-20.3-17-24.9z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M493.4 24.6l-104-24c-11.2-2.6-22.6 3.3-27.2 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60 49.6c-36.2 76.7-99.4 139.9-176.1 176.1l-49.6-60c-6.7-8.3-18.2-11.1-28-6.9l-112 48C38 367 32.2 378.2 34.8 389.4l24 104C62 505.7 72.1 512 82.3 512c247.4 0 448-200.6 448-448 0-10.2-6.3-20.3-17-24.9z"/></svg>') }
+    .fa-heartbeat:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M320 128c-35.3 0-64 28.7-64 64 0-35.3-28.7-64-64-64-53 0-96 43-96 96 0 96 160 192 160 192s160-96 160-192c0-53-43-96-96-96z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M320 128c-35.3 0-64 28.7-64 64 0-35.3-28.7-64-64-64-53 0-96 43-96 96 0 96 160 192 160 192s160-96 160-192c0-53-43-96-96-96z"/></svg>') }
+    .fa-tint:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M224 32c-10.7 0-21.4 4.2-29.5 12.5C162.6 76.4 96 147 96 224c0 79.5 64.5 144 144 144s144-64.5 144-144c0-77-66.6-147.6-98.5-179.5C245.4 36.2 234.7 32 224 32z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M224 32c-10.7 0-21.4 4.2-29.5 12.5C162.6 76.4 96 147 96 224c0 79.5 64.5 144 144 144s144-64.5 144-144c0-77-66.6-147.6-98.5-179.5C245.4 36.2 234.7 32 224 32z"/></svg>') }
+    .fa-weight:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 64H64C28.7 64 0 92.7 0 128v288c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64zM256 416c-70.7 0-128-57.3-128-128h256c0 70.7-57.3 128-128 128z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 64H64C28.7 64 0 92.7 0 128v288c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64zM256 416c-70.7 0-128-57.3-128-128h256c0 70.7-57.3 128-128 128z"/></svg>') }
+    .fa-notes-medical:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M336 64h-80l-32-32h-64L128 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM96 224h64v-64h64v64h64v64h-64v64h-64v-64H96v-64z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M336 64h-80l-32-32h-64L128 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM96 224h64v-64h64v64h64v64h-64v64h-64v-64H96v-64z"/></svg>') }
+    .fa-exclamation-triangle:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M569.5 440.6L327.4 40.6c-18.6-31-64.2-31-82.8 0L6.5 440.6C-11.8 471.2 10.5 512 48 512h480c37.5 0 59.8-40.8 41.5-71.4zM288 392c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm-32-72h64V184h-64v136z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M569.5 440.6L327.4 40.6c-18.6-31-64.2-31-82.8 0L6.5 440.6C-11.8 471.2 10.5 512 48 512h480c37.5 0 59.8-40.8 41.5-71.4zM288 392c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm-32-72h64V184h-64v136z"/></svg>') }
+    .fa-download:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M488 352h-112v48h112v64H24v-64h112v-48H24c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24h464c13.3 0 24-10.7 24-24V376c0-13.3-10.7-24-24-24zM273 25c-9.4-9.4-24.6-9.4-33.9 0L137 127c-15.1 15.1-4.4 41 17 41h56v160c0 13.3 10.7 24 24 24h40c13.3 0 24-10.7 24-24V168h56c21.5 0 32.2-25.9 17-41L273 25z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M488 352h-112v48h112v64H24v-64h112v-48H24c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24h464c13.3 0 24-10.7 24-24V376c0-13.3-10.7-24-24-24zM273 25c-9.4-9.4-24.6-9.4-33.9 0L137 127c-15.1 15.1-4.4 41 17 41h56v160c0 13.3 10.7 24 24 24h40c13.3 0 24-10.7 24-24V168h56c21.5 0 32.2-25.9 17-41L273 25z"/></svg>') }
+    .fa-edit:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M402.3 344.9l32-32L233.4 112.9l-32 32 200.9 200zM64 400v64h64l200.9-200.9-64-64L64 400zM493.3 56.6l-39.6-39.6c-9.4-9.4-24.6-9.4-33.9 0L380.1 56.8l73.5 73.5 39.6-39.6c9.3-9.4 9.3-24.6.1-34.1z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M402.3 344.9l32-32L233.4 112.9l-32 32 200.9 200zM64 400v64h64l200.9-200.9-64-64L64 400zM493.3 56.6l-39.6-39.6c-9.4-9.4-24.6-9.4-33.9 0L380.1 56.8l73.5 73.5 39.6-39.6c9.3-9.4 9.3-24.6.1-34.1z"/></svg>') }
+    .fa-plus:before,.fa-user-plus:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64h-96v144H32v96h144v144h96V304h144z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 208H272V64h-96v144H32v96h144v144h96V304h144z"/></svg>') }
+    .fa-sun:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 152a104 104 0 1 0 0 208 104 104 0 0 0 0-208zm0-120h-40v80h80V32h-40zM96 216H16v80h80v-80zm320 0v80h80v-80h-80zM256 400h-40v80h80v-80h-40zM87 87L59 115l57 57 28-28-57-57zm311 311l-28 28 57 57 28-28-57-57zM400 112l-28 28 57 57 28-28-57-57zM112 400l-57 57 28 28 57-57-28-28z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 152a104 104 0 1 0 0 208 104 104 0 0 0 0-208zm0-120h-40v80h80V32h-40zM96 216H16v80h80v-80zm320 0v80h80v-80h-80zM256 400h-40v80h80v-80h-40zM87 87L59 115l57 57 28-28-57-57zm311 311l-28 28 57 57 28-28-57-57zM400 112l-28 28 57 57 28-28-57-57zM112 400l-57 57 28 28 57-57-28-28z"/></svg>') }
+    .fa-moon:before{ -webkit-mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M279.135 512c78.662 0 150.318-35.818 196.865-92.062C391.3 418.1 336 346.7 336 264c0-82.7 55.3-154.1 139.9-155.9C429.453 52.818 357.797 17 279.135 17 144.9 17 35 126.9 35 261.135S144.9 512 279.135 512z"/></svg>'); mask-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M279.135 512c78.662 0 150.318-35.818 196.865-92.062C391.3 418.1 336 346.7 336 264c0-82.7 55.3-154.1 139.9-155.9C429.453 52.818 357.797 17 279.135 17 144.9 17 35 126.9 35 261.135S144.9 512 279.135 512z"/></svg>') }
+  </style>
 </head>
-
 <body class="bg-gray-50 dark:bg-gray-900 font-sans transition-colors duration-300">
-    <!-- Mobile menu overlay -->
-    <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
-
-    <!-- Sidebar -->
-    <div id="sidebar"
-        class="fixed left-0 top-0 h-full w-64 bg-sidebar dark:bg-gray-800 text-white transform -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out z-50">
-        <div class="p-6">
-            <div class="flex items-center space-x-3 mb-8">
-                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                    <i class="fas fa-user-md text-white text-sm"></i>
-                </div>
-                <h1 class="text-xl font-bold">MedConnect</h1>
-            </div>
-
-            <nav class="space-y-2">
-                <a href="#" data-page="home"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg bg-primary/20 text-green-200">
-                    <i class="fas fa-home w-5"></i>
-                    <span>Home</span>
-                </a>
-                <a href="#" data-page="patients"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-users w-5"></i>
-                    <span>My Patients</span>
-                </a>
-                <a href="#" data-page="appointments"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-calendar-check w-5"></i>
-                    <span>Appointments</span>
-                </a>
-                <a href="#" data-page="prescriptions"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-prescription-bottle w-5"></i>
-                    <span>Prescriptions</span>
-                </a>
-                <a href="#" data-page="analytics"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-chart-line w-5"></i>
-                    <span>Health Analytics</span>
-                </a>
-                <a href="#" data-page="account"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-user-cog w-5"></i>
-                    <span>Profile</span>
-                </a>
-                <a href="#"
-                    class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors">
-                    <i class="fas fa-cog w-5"></i>
-                    <span>Settings</span>
-                </a>
-            </nav>
+  <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+  <div id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-sidebar dark:bg-gray-800 text-white transform -translate-x-full lg:translate-x-0 transition-all duration-300 ease-in-out z-50">
+    <div class="p-6">
+      <div class="flex items-center space-x-3 mb-8">
+        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"><i class="fas fa-user-md text-white text-sm"></i></div>
+        <h1 class="text-xl font-bold">MedConnect</h1>
+      </div>
+      <nav class="space-y-2">
+        <a href="#" data-page="home" class="nav-link flex items-center space-x-3 p-3 rounded-lg bg-primary/20 text-green-200"><i class="fas fa-home w-5"></i><span>Home</span></a>
+        <a href="#" data-page="patients" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-users w-5"></i><span>My Patients</span></a>
+        <a href="#" data-page="appointments" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-calendar-check w-5"></i><span>Appointments</span></a>
+        <a href="#" data-page="prescriptions" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-prescription-bottle w-5"></i><span>Prescriptions</span></a>
+        <a href="#" data-page="analytics" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-chart-line w-5"></i><span>Health Analytics</span></a>
+        <a href="#" data-page="account" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-user-cog w-5"></i><span>Profile</span></a>
+        <a href="#" class="nav-link flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-colors"><i class="fas fa-cog w-5"></i><span>Settings</span></a>
+      </nav>
+    </div>
+  </div>
+  <div class="lg:ml-64">
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
+      <div class="flex items-center justify-between px-4 py-4">
+        <div class="flex items-center space-x-4">
+          <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"><i class="fas fa-bars text-gray-600 dark:text-gray-300"></i></button>
+          <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Doctor Dashboard</h2>
         </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="lg:ml-64">
-        <!-- Top Navigation -->
-        <header
-            class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
-            <div class="flex items-center justify-between px-4 py-4">
-                <div class="flex items-center space-x-4">
-                    <button id="mobile-menu-btn"
-                        class="lg:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
-                    </button>
-                    <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Doctor Dashboard</h2>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <!-- Search Bar -->
-                    <div class="hidden sm:block relative">
-                        <input type="text" placeholder="Search patients..."
-                            class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-64">
-                        <i
-                            class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
-                    </div>
-
-                    <!-- Theme Toggle -->
-                    <button id="theme-toggle"
-                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                        <i id="theme-icon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
-                    </button>
-
-                    <!-- Notifications -->
-                    <button
-                        class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                        <i class="fas fa-bell text-gray-600 dark:text-gray-300"></i>
-                        <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-                    </button>
-
-                    <!-- Profile -->
-                    <div class="flex items-center space-x-3">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
-                            alt="Profile" class="w-8 h-8 rounded-full object-cover">
-                        <span class="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">Dr. Michael
-                            Chen</span>
-                        <i class="fas fa-chevron-down text-gray-400 dark:text-gray-500 text-xs"></i>
-                    </div>
-                </div>
+        <div class="flex items-center space-x-4">
+          <div class="hidden sm:block relative"><input type="text" placeholder="Search patients..." class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent w-64"><i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500"></i></div>
+          <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i id="theme-icon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i></button>
+          <button class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-bell text-gray-600 dark:text-gray-300"></i><span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span></button>
+          <div class="flex items-center space-x-3"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Profile" class="w-8 h-8 rounded-full object-cover"><span class="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">Dr. Michael Chen</span><i class="fas fa-chevron-down text-gray-400 dark:text-gray-500 text-xs"></i></div>
+        </div>
+      </div>
+    </header>
+    <main class="p-4 lg:p-6">
+      <div id="home-page" class="page-content space-y-6">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">Dashboard</span></nav>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <div class="relative"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Doctor Photo" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"><div class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-white rounded-full"></div></div>
+              <div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dr. Michael Chen</h1>
+                <p class="text-gray-600 dark:text-gray-300">Cardiologist • License: MD-2024-001</p>
+                <p class="text-gray-500 dark:text-gray-400 flex items-center mt-1"><i class="fas fa-envelope mr-2"></i>dr.chen@medconnect.com</p>
+                <p class="text-gray-500 dark:text-gray-400 flex items-center"><i class="fas fa-phone mr-2"></i>+1 (555) 987-6543</p>
+              </div>
             </div>
-        </header>
-
-        <!-- Main Content Area -->
-        <main class="p-4 lg:p-6">
-            <!-- Home Page -->
-            <div id="home-page" class="page-content space-y-6">
-                <!-- Breadcrumb -->
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">Dashboard</span>
-                </nav>
-
-                <!-- Quick Doctor Info -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-                        <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                            <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
-                                    alt="Doctor Photo"
-                                    class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
-                                <div
-                                    class="absolute bottom-0 right-0 w-6 h-6 bg-green-500 border-2 border-white rounded-full">
-                                </div>
-                            </div>
-                            <div>
-                                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dr. Michael Chen</h1>
-                                <p class="text-gray-600 dark:text-gray-300">Cardiologist • License: MD-2024-001</p>
-                                <p class="text-gray-500 dark:text-gray-400 flex items-center mt-1">
-                                    <i class="fas fa-envelope mr-2"></i>dr.chen@medconnect.com
-                                </p>
-                                <p class="text-gray-500 dark:text-gray-400 flex items-center">
-                                    <i class="fas fa-phone mr-2"></i>+1 (555) 987-6543
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
-                            <button
-                                class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
-                                <i class="fas fa-user-plus mr-2"></i>Add Patient
-                            </button>
-                            <button
-                                class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                <i class="fas fa-calendar mr-2"></i>View Schedule
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Summary Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-                                <i class="fas fa-users text-blue-600 dark:text-blue-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Patients</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">247</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">+12 this month</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-green-100 dark:bg-green-900">
-                                <i class="fas fa-calendar-check text-green-600 dark:text-green-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Today's Appointments</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">8</p>
-                                <p class="text-xs text-blue-600 dark:text-blue-400">Next: 10:30 AM</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
-                                <i class="fas fa-prescription-bottle text-purple-600 dark:text-purple-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Prescriptions Today</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">15</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">3 pending review</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                                <i class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Urgent Cases</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">3</p>
-                                <p class="text-xs text-red-600 dark:text-red-400">Requires attention</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-900 dark:text-white">Completed consultation with Sarah
-                                        Johnson</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">30 minutes ago</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-900 dark:text-white">Updated prescription for John Smith
-                                    </p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">1 hour ago</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-900 dark:text-white">New urgent case assigned: Emma
-                                        Davis</p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">2 hours ago</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- My Patients Page -->
-            <div id="patients-page" class="page-content space-y-6 hidden">
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">My Patients</span>
-                </nav>
-
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">My Patients</h1>
-                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
-                        <i class="fas fa-user-plus mr-2"></i>Add New Patient
-                    </button>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient List</h2>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Patient</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Age</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Condition</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Last Visit</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Status</th>
-                                    <th
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                        Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                <tr>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full object-cover"
-                                                src="https://images.unsplash.com/photo-1494790108755-2616b612b8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                                alt="">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Sarah
-                                                    Johnson</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-001</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">39</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Hypertension</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Stable</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm">
-                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
-                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full object-cover"
-                                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                                alt="">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">John
-                                                    Smith</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-002</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">45</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Diabetes Type 2</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Monitoring</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm">
-                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
-                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4">
-                                        <div class="flex items-center">
-                                            <img class="h-10 w-10 rounded-full object-cover"
-                                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                                alt="">
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 dark:text-white">Emma
-                                                    Davis</div>
-                                                <div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-003</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">32</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Chest Pain</td>
-                                    <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td>
-                                    <td class="px-6 py-4">
-                                        <span
-                                            class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">Critical</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm">
-                                        <button class="text-primary hover:text-green-600 mr-3">View</button>
-                                        <button class="text-blue-600 hover:text-blue-800">Edit</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Appointments Page -->
-            <div id="appointments-page" class="page-content space-y-6 hidden">
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">Appointments</span>
-                </nav>
-
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Appointments</h1>
-                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
-                        <i class="fas fa-calendar-plus mr-2"></i>Schedule Appointment
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                    <!-- Today's Schedule -->
-                    <div class="xl:col-span-2">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Today's Schedule</h2>
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <div
-                                    class="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-l-4 border-green-500">
-                                    <div class="flex-shrink-0">
-                                        <div
-                                            class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-user text-green-600 dark:text-green-400"></i>
-                                        </div>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Sarah
-                                                    Johnson</p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">Follow-up
-                                                    consultation</p>
-                                            </div>
-                                            <div class="text-right">
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">10:30 AM
-                                                </p>
-                                                <p class="text-xs text-green-600 dark:text-green-400">30 min</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500">
-                                    <div class="flex-shrink-0">
-                                        <div
-                                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-user text-blue-600 dark:text-blue-400"></i>
-                                        </div>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">John Smith
-                                                </p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">Diabetes check-up
-                                                </p>
-                                            </div>
-                                            <div class="text-right">
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">2:
-                                                    00 PM</p>
-                                                <p class="text-xs text-blue-600 dark:text-blue-400">45 min</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div
-                                    class="flex items-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500">
-                                    <div class="flex-shrink-0">
-                                        <div
-                                            class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-user text-yellow-600 dark:text-yellow-400"></i>
-                                        </div>
-                                    </div>
-                                    <div class="ml-4 flex-1">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">Emma Davis
-                                                </p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">Emergency
-                                                    consultation</p>
-                                            </div>
-                                            <div class="text-right">
-                                                <p class="text-sm font-medium text-gray-900 dark:text-white">4:15 PM</p>
-                                                <p class="text-xs text-yellow-600 dark:text-yellow-400">60 min</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Actions -->
-                    <div class="xl:col-span-1">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h2>
-                            </div>
-                            <div class="p-6 space-y-4">
-                                <button
-                                    class="w-full flex items-center p-3 text-left bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors">
-                                    <i class="fas fa-user-plus text-green-600 dark:text-green-400 mr-3"></i>
-                                    <span class="text-gray-900 dark:text-white">Add New Patient</span>
-                                </button>
-                                <button
-                                    class="w-full flex items-center p-3 text-left bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors">
-                                    <i class="fas fa-prescription-bottle text-blue-600 dark:text-blue-400 mr-3"></i>
-                                    <span class="text-gray-900 dark:text-white">Write Prescription</span>
-                                </button>
-                                <button
-                                    class="w-full flex items-center p-3 text-left bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors">
-                                    <i class="fas fa-notes-medical text-purple-600 dark:text-purple-400 mr-3"></i>
-                                    <span class="text-gray-900 dark:text-white">Medical Notes</span>
-                                </button>
-                                <button
-                                    class="w-full flex items-center p-3 text-left bg-yellow-50 dark:bg-yellow-900/20 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors">
-                                    <i class="fas fa-calendar-check text-yellow-600 dark:text-yellow-400 mr-3"></i>
-                                    <span class="text-gray-900 dark:text-white">Schedule Follow-up</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Prescriptions Page -->
-            <div id="prescriptions-page" class="page-content space-y-6 hidden">
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">Prescriptions</span>
-                </nav>
-
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
-                    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Prescriptions</h1>
-                    <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
-                        <i class="fas fa-plus mr-2"></i>Write New Prescription
-                    </button>
-                </div>
-
-                <div class="grid gap-4">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div
-                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-                            <div class="flex-1">
-                                <div class="flex items-center space-x-3 mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Sarah Johnson -
-                                        Metformin</h3>
-                                    <span
-                                        class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span>
-                                </div>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 500mg twice
-                                    daily</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Jan 15,
-                                    2024</p>
-                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Type 2 Diabetes
-                                    Management</p>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="downloadPrescription('Sarah Johnson', 'Metformin')"
-                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>Download PDF
-                                </button>
-                                <button
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                    <i class="fas fa-edit mr-2"></i>Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div
-                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-                            <div class="flex-1">
-                                <div class="flex items-center space-x-3 mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">John Smith -
-                                        Lisinopril</h3>
-                                    <span
-                                        class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span>
-                                </div>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 10mg once
-                                    daily</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Dec 20,
-                                    2023</p>
-                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Hypertension
-                                    Control</p>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="downloadPrescription('John Smith', 'Lisinopril')"
-                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>Download PDF
-                                </button>
-                                <button
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                    <i class="fas fa-edit mr-2"></i>Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div
-                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
-                            <div class="flex-1">
-                                <div class="flex items-center space-x-3 mb-2">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Emma Davis - Aspirin
-                                    </h3>
-                                    <span
-                                        class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Pending
-                                        Review</span>
-                                </div>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 81mg daily</p>
-                                <p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Feb 2,
-                                    2024</p>
-                                <p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Cardiovascular
-                                    Protection</p>
-                            </div>
-                            <div class="flex space-x-2">
-                                <button onclick="downloadPrescription('Emma Davis', 'Aspirin')"
-                                    class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                    <i class="fas fa-download mr-2"></i>Download PDF
-                                </button>
-                                <button
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                                    <i class="fas fa-edit mr-2"></i>Edit
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Health Analytics Page -->
-            <div id="analytics-page" class="page-content space-y-6 hidden">
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">Health Analytics</span>
-                </nav>
-
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Health Analytics</h1>
-
-                <!-- Key Metrics -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-                                <i class="fas fa-heartbeat text-blue-600 dark:text-blue-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Heart Rate</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">74 BPM</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">Normal Range</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-red-100 dark:bg-red-900">
-                                <i class="fas fa-tint text-red-600 dark:text-red-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Blood Pressure</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">118/78</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">Optimal</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-green-100 dark:bg-green-900">
-                                <i class="fas fa-weight text-green-600 dark:text-green-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Weight Trend</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">-2.1 kg</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">Improving</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
-                                <i class="fas fa-chart-line text-purple-600 dark:text-purple-400"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Risk Score</p>
-                                <p class="text-2xl font-semibold text-gray-900 dark:text-white">Low</p>
-                                <p class="text-xs text-green-600 dark:text-green-400">Decreased 15%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Patient Data Analysis -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <div class="flex items-center justify-between">
-                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient Historical Data</h2>
-                            <button id="toggle-analytics"
-                                class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors">
-                                <i class="fas fa-chart-bar mr-2"></i>View More Data
-                            </button>
-                        </div>
-                    </div>
-
-                    <div id="analytics-summary" class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="text-center">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Patients Monitored</p>
-                                <p class="text-xl font-semibold text-gray-900 dark:text-white">247</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Critical Cases</p>
-                                <p class="text-xl font-semibold text-red-600 dark:text-red-400">3</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Recovery Rate</p>
-                                <p class="text-xl font-semibold text-green-600 dark:text-green-400">94.2%</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="analytics-details" class="hidden">
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead class="bg-gray-50 dark:bg-gray-700">
-                                    <tr>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Patient</th>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Blood Pressure</th>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Weight</th>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Heart Rate</th>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Risk Level</th>
-                                        <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                                            Last Updated</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Sarah Johnson</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">120/80</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">65.2 kg</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">72 BPM</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Low</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">John Smith</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">135/85</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">78.5 kg</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">76 BPM</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Medium</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Emma Davis</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">145/95</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">62.1 kg</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">89 BPM</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">High</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Account/Profile Page -->
-            <div id="account-page" class="page-content space-y-6 hidden">
-                <nav class="text-sm text-gray-500 dark:text-gray-400">
-                    <span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span
-                        class="text-gray-800 dark:text-gray-200">Profile</span>
-                </nav>
-
-                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Doctor Profile</h1>
-
-                <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                    <!-- Professional Information -->
-                    <div class="xl:col-span-2">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Professional
-                                        Information</h2>
-                                    <button
-                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
-                                        <i class="fas fa-edit text-xs"></i>
-                                        <span>Edit</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="p-6 space-y-6">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Full
-                                            Name</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">Dr. Michael Chen</p>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="text-sm font-medium text-gray-500 dark:text-gray-400">Specialization</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">Cardiologist</p>
-                                    </div>
-                                    <div>
-                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Email
-                                            Address</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">dr.chen@medconnect.com</p>
-                                    </div>
-                                    <div>
-                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone
-                                            Number</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">+1 (555) 987-6543</p>
-                                    </div>
-                                    <div>
-                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">License
-                                            Number</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">MD-2024-001</p>
-                                    </div>
-                                    <div>
-                                        <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Years of
-                                            Experience</label>
-                                        <p class="mt-1 text-gray-900 dark:text-white">15 years</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Professional
-                                        Summary</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Board-certified cardiologist with over
-                                        15 years of experience in treating cardiovascular diseases. Specialized in
-                                        interventional cardiology and preventive heart care. Committed to providing
-                                        comprehensive cardiac care using the latest medical technologies and
-                                        evidence-based treatments.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Additional Information -->
-                    <div class="space-y-6">
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Hospital Affiliation
-                                    </h2>
-                                    <button
-                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
-                                        <i class="fas fa-edit text-xs"></i>
-                                        <span>Edit</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="p-6 space-y-4">
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Primary
-                                        Hospital</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">San Francisco General Hospital</p>
-                                </div>
-                                <div>
-                                    <label
-                                        class="text-sm font-medium text-gray-500 dark:text-gray-400">Department</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Cardiology Department</p>
-                                </div>
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office
-                                        Hours</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Mon-Fri: 8:00 AM - 6:00 PM</p>
-                                </div>
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office
-                                        Location</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Building A, Floor 3, Room 301</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Certifications -->
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300">
-                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Certifications</h2>
-                                    <button
-                                        class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
-                                        <i class="fas fa-edit text-xs"></i>
-                                        <span>Edit</span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="p-6 space-y-4">
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text-gray-400">Board
-                                        Certification</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">American Board of Internal Medicine -
-                                        Cardiology</p>
-                                </div>
-                                <div>
-                                    <label
-                                        class="text-sm font-medium text-gray-500 dark:text-gray-400">Fellowship</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Interventional Cardiology Fellowship
-                                    </p>
-                                </div>
-                                <div>
-                                    <label class="text-sm font-medium text-gray-500 dark:text
-gray-400">Medical School</label>
-                                    <p class="mt-1 text-gray-900 dark:text-white">Harvard Medical School</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // Theme Management
-        const html = document.documentElement;
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
-        // Check for saved theme preference or default to 'light'
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        html.classList.toggle('dark', currentTheme === 'dark');
-        updateThemeIcon(currentTheme);
-
-        function updateThemeIcon(theme) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun text-yellow-500';
-            } else {
-                themeIcon.className = 'fas fa-moon text-gray-600 dark:text-gray-300';
-            }
-        }
-
-        themeToggle.addEventListener('click', () => {
-            const isDark = html.classList.contains('dark');
-            const newTheme = isDark ? 'light' : 'dark';
-
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        // Page Navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const pageContents = document.querySelectorAll('.page-content');
-
-        function showPage(pageId) {
-            // Hide all pages
-            pageContents.forEach(page => {
-                page.classList.add('hidden');
-            });
-
-            // Show selected page
-            const targetPage = document.getElementById(pageId + '-page');
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-            }
-
-            // Update active nav link
-            navLinks.forEach(link => {
-                link.classList.remove('bg-primary/20', 'text-green-200');
-                link.classList.add('hover:bg-white/10');
-            });
-
-            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeLink) {
-                activeLink.classList.add('bg-primary/20', 'text-green-200');
-                activeLink.classList.remove('hover:bg-white/10');
-            }
-        }
-
-        // Add click handlers to nav links
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.getAttribute('data-page');
-                if (pageId) {
-                    showPage(pageId);
-
-                    // Close mobile menu if open
-                    if (window.innerWidth < 1024) {
-                        toggleMobileMenu();
-                    }
-                }
-            });
-        });
-
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const sidebar = document.getElementById('sidebar');
-        const mobileOverlay = document.getElementById('mobile-overlay');
-
-        function toggleMobileMenu() {
-            sidebar.classList.toggle('-translate-x-full');
-            mobileOverlay.classList.toggle('hidden');
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        mobileOverlay.addEventListener('click', toggleMobileMenu);
-
-        // Health Analytics - View More Data Toggle
-        const toggleAnalyticsBtn = document.getElementById('toggle-analytics');
-        const analyticsSummary = document.getElementById('analytics-summary');
-        const analyticsDetails = document.getElementById('analytics-details');
-
-        if (toggleAnalyticsBtn) {
-            toggleAnalyticsBtn.addEventListener('click', () => {
-                const isDetailsVisible = !analyticsDetails.classList.contains('hidden');
-
-                if (isDetailsVisible) {
-                    analyticsDetails.classList.add('hidden');
-                    analyticsSummary.classList.remove('hidden');
-                    toggleAnalyticsBtn.innerHTML = '<i class="fas fa-chart-bar mr-2"></i>View More Data';
-                } else {
-                    analyticsDetails.classList.remove('hidden');
-                    analyticsSummary.classList.add('hidden');
-                    toggleAnalyticsBtn.innerHTML = '<i class="fas fa-chart-line mr-2"></i>View Less Data';
-                }
-            });
-        }
-
-        // Prescription PDF Download
-        function downloadPrescription(patientName, medicineName) {
-            // Simulate PDF download
-            alert(`Downloading prescription PDF for ${patientName} - ${medicineName}. In a real application, this would generate and download a PDF file.`);
-        }
-
-        // Quick Actions functionality
-        document.addEventListener('click', (e) => {
-            const button = e.target.closest('button');
-            if (button) {
-                const buttonText = button.textContent.trim();
-
-                if (buttonText.includes('Add New Patient')) {
-                    alert('Add New Patient form would open here.');
-                } else if (buttonText.includes('Write Prescription')) {
-                    alert('Prescription writing interface would open here.');
-                } else if (buttonText.includes('Medical Notes')) {
-                    alert('Medical notes interface would open here.');
-                } else if (buttonText.includes('Schedule Follow-up')) {
-                    alert('Follow-up scheduling interface would open here.');
-                } else if (buttonText.includes('Edit') && !buttonText.includes('Write') && !buttonText.includes('Add')) {
-                    alert('Edit functionality would be implemented here with a modal form.');
-                } else if (buttonText.includes('Schedule Appointment')) {
-                    alert('Appointment scheduling interface would open here.');
-                } else if (buttonText.includes('Write New Prescription')) {
-                    alert('New prescription interface would open here.');
-                } else if (buttonText.includes('Add Patient')) {
-                    alert('Patient registration form would open here.');
-                } else if (buttonText.includes('View Schedule')) {
-                    alert('Full schedule view would open here.');
-                }
-            }
-        });
-
-        // Search functionality
-        const searchInput = document.querySelector('input[placeholder="Search patients..."]');
-        if (searchInput) {
-            searchInput.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    alert(`Searching for patient: ${this.value}`);
-                }
-            });
-        }
-
-        // Patient table actions
-        document.addEventListener('click', (e) => {
-            if (e.target.textContent === 'View') {
-                const row = e.target.closest('tr');
-                const patientName = row.querySelector('.text-sm.font-medium').textContent;
-                alert(`Opening detailed view for ${patientName}`);
-            }
-        });
-
-        // Responsive handling
-        function handleResize() {
-            if (window.innerWidth >= 1024) {
-                sidebar.classList.remove('-translate-x-full');
-                mobileOverlay.classList.add('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Initial check
-
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', () => {
-            // Show home page by default
-            showPage('home');
-        });
-    </script>
+            <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3"><button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors"><i class="fas fa-user-plus mr-2"></i>Add Patient</button><button class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-calendar mr-2"></i>View Schedule</button></div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900"><i class="fas fa-users text-blue-600 dark:text-blue-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Patients</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">247</p><p class="text-xs text-green-600 dark:text-green-400">+12 this month</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-green-100 dark:bg-green-900"><i class="fas fa-calendar-check text-green-600 dark:text-green-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Today's Appointments</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">8</p><p class="text-xs text-blue-600 dark:text-blue-400">Next: 10:30 AM</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900"><i class="fas fa-prescription-bottle text-purple-600 dark:text-purple-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Prescriptions Today</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">15</p><p class="text-xs text-green-600 dark:text-green-400">3 pending review</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900"><i class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Urgent Cases</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">3</p><p class="text-xs text-red-600 dark:text-red-400">Requires attention</p></div></div></div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h2></div><div class="p-6"><div class="space-y-4"><div class="flex items-center space-x-4"><div class="w-2 h-2 bg-green-500 rounded-full"></div><div class="flex-1"><p class="text-sm text-gray-900 dark:text-white">Completed consultation with Sarah Johnson</p><p class="text-xs text-gray-500 dark:text-gray-400">30 minutes ago</p></div></div><div class="flex items-center space-x-4"><div class="w-2 h-2 bg-blue-500 rounded-full"></div><div class="flex-1"><p class="text-sm text-gray-900 dark:text-white">Updated prescription for John Smith</p><p class="text-xs text-gray-500 dark:text-gray-400">1 hour ago</p></div></div><div class="flex items-center space-x-4"><div class="w-2 h-2 bg-yellow-500 rounded-full"></div><div class="flex-1"><p class="text-sm text-gray-900 dark:text-white">New urgent case assigned: Emma Davis</p><p class="text-xs text-gray-500 dark:text-gray-400">2 hours ago</p></div></div></div></div></div>
+      </div>
+      <div id="patients-page" class="page-content space-y-6 hidden">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">My Patients</span></nav>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0"><h1 class="text-2xl font-bold text-gray-900 dark:text-white">My Patients</h1><button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors"><i class="fas fa-user-plus mr-2"></i>Add New Patient</button></div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient List</h2></div><div class="overflow-x-auto"><table class="w-full"><thead class="bg-gray-50 dark:bg-gray-700"><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Patient</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Age</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Condition</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Last Visit</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Actions</th></tr></thead><tbody class="divide-y divide-gray-200 dark:divide-gray-700"><tr><td class="px-6 py-4"><div class="flex items-center"><img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108755-2616b612b8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt=""><div class="ml-4"><div class="text-sm font-medium text-gray-900 dark:text-white">Sarah Johnson</div><div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-001</div></div></div></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">39</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Hypertension</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td><td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Stable</span></td><td class="px-6 py-4 text-sm"><button class="text-primary hover:text-green-600 mr-3">View</button><button class="text-blue-600 hover:text-blue-800">Edit</button></td></tr><tr><td class="px-6 py-4"><div class="flex items-center"><img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt=""><div class="ml-4"><div class="text-sm font-medium text-gray-900 dark:text-white">John Smith</div><div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-002</div></div></div></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">45</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Diabetes Type 2</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td><td class="px-6 py-4"><span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Monitoring</span></td><td class="px-6 py-4 text-sm"><button class="text-primary hover:text-green-600 mr-3">View</button><button class="text-blue-600 hover:text-blue-800">Edit</button></td></tr><tr><td class="px-6 py-4"><div class="flex items-center"><img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt=""><div class="ml-4"><div class="text-sm font-medium text-gray-900 dark:text-white">Emma Davis</div><div class="text-sm text-gray-500 dark:text-gray-400">PAT-2024-003</div></div></div></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">32</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Chest Pain</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td><td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">Critical</span></td><td class="px-6 py-4 text-sm"><button class="text-primary hover:text-green-600 mr-3">View</button><button class="text-blue-600 hover:text-blue-800">Edit</button></td></tr></tbody></table></div></div>
+      </div>
+      <div id="appointments-page" class="page-content space-y-6 hidden">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">Appointments</span></nav>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0"><h1 class="text-2xl font-bold text-gray-900 dark:text-white">Appointments</h1><button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors"><i class="fas fa-calendar-plus mr-2"></i>Schedule Appointment</button></div>
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2"><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Today's Schedule</h2></div><div class="p-6 space-y-4"><div class="flex items-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border-l-4 border-green-500"><div class="flex-shrink-0"><div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"><i class="fas fa-user text-green-600 dark:text-green-400"></i></div></div><div class="ml-4 flex-1"><div class="flex items-center justify-between"><div><p class="text-sm font-medium text-gray-900 dark:text-white">Sarah Johnson</p><p class="text-sm text-gray-500 dark:text-gray-400">Follow-up consultation</p></div><div class="text-right"><p class="text-sm font-medium text-gray-900 dark:text-white">10:30 AM</p><p class="text-xs text-green-600 dark:text-green-400">30 min</p></div></div></div></div><div class="flex items-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500"><div class="flex-shrink-0"><div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center"><i class="fas fa-user text-blue-600 dark:text-blue-400"></i></div></div><div class="ml-4 flex-1"><div class="flex items-center justify-between"><div><p class="text-sm font-medium text-gray-900 dark:text-white">John Smith</p><p class="text-sm text-gray-500 dark:text-gray-400">Diabetes check-up</p></div><div class="text-right"><p class="text-sm font-medium text-gray-900 dark:text-white">2: 00 PM</p><p class="text-xs text-blue-600 dark:text-blue-400">45 min</p></div></div></div></div><div class="flex items-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500"><div class="flex-shrink-0"><div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center"><i class="fas fa-user text-yellow-600 dark:text-yellow-400"></i></div></div><div class="ml-4 flex-1"><div class="flex items-center justify-between"><div><p class="text-sm font-medium text-gray-900 dark:text-white">Emma Davis</p><p class="text-sm text-gray-500 dark:text-gray-400">Emergency consultation</p></div><div class="text-right"><p class="text-sm font-medium text-gray-900 dark:text-white">4:15 PM</p><p class="text-xs text-yellow-600 dark:text-yellow-400">60 min</p></div></div></div></div></div></div>
+          <div class="xl:col-span-1"><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Actions</h2></div><div class="p-6 space-y-4"><button class="w-full flex items-center p-3 text-left bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"><i class="fas fa-user-plus text-green-600 dark:text-green-400 mr-3"></i><span class="text-gray-900 dark:text-white">Add New Patient</span></button><button class="w-full flex items-center p-3 text-left bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"><i class="fas fa-prescription-bottle text-blue-600 dark:text-blue-400 mr-3"></i><span class="text-gray-900 dark:text-white">Write Prescription</span></button><button class="w-full flex items-center p-3 text-left bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"><i class="fas fa-notes-medical text-purple-600 dark:text-purple-400 mr-3"></i><span class="text-gray-900 dark:text-white">Medical Notes</span></button><button class="w-full flex items-center p-3 text-left bg-yellow-50 dark:bg-yellow-900/20 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors"><i class="fas fa-calendar-check text-yellow-600 dark:text-yellow-400 mr-3"></i><span class="text-gray-900 dark:text-white">Schedule Follow-up</span></button></div></div></div>
+        </div>
+      </div>
+      <div id="prescriptions-page" class="page-content space-y-6 hidden">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">Prescriptions</span></nav>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0"><h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Prescriptions</h1><button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors"><i class="fas fa-plus mr-2"></i>Write New Prescription</button></div>
+        <div class="grid gap-4">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0"><div class="flex-1"><div class="flex items-center space-x-3 mb-2"><h3 class="text-lg font-semibold text-gray-900 dark:text-white">Sarah Johnson - Metformin</h3><span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span></div><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 500mg twice daily</p><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Jan 15, 2024</p><p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Type 2 Diabetes Management</p></div><div class="flex space-x-2"><button onclick="downloadPrescription('Sarah Johnson', 'Metformin')" class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-download mr-2"></i>Download PDF</button><button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"><i class="fas fa-edit mr-2"></i>Edit</button></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0"><div class="flex-1"><div class="flex items-center space-x-3 mb-2"><h3 class="text-lg font-semibold text-gray-900 dark:text-white">John Smith - Lisinopril</h3><span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Active</span></div><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 10mg once daily</p><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Dec 20, 2023</p><p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Hypertension Control</p></div><div class="flex space-x-2"><button onclick="downloadPrescription('John Smith', 'Lisinopril')" class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-download mr-2"></i>Download PDF</button><button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"><i class="fas fa-edit mr-2"></i>Edit</button></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0"><div class="flex-1"><div class="flex items-center space-x-3 mb-2"><h3 class="text-lg font-semibold text-gray-900 dark:text-white">Emma Davis - Aspirin</h3><span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Pending Review</span></div><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Dosage:</strong> 81mg daily</p><p class="text-gray-600 dark:text-gray-300 mb-1"><strong>Prescribed:</strong> Feb 2, 2024</p><p class="text-gray-600 dark:text-gray-300"><strong>Condition:</strong> Cardiovascular Protection</p></div><div class="flex space-x-2"><button onclick="downloadPrescription('Emma Davis', 'Aspirin')" class="px-4 py-2 border border-gray-300 dark;border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"><i class="fas fa-download mr-2"></i>Download PDF</button><button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"><i class="fas fa-edit mr-2"></i>Edit</button></div></div></div>
+        </div>
+      </div>
+      <div id="analytics-page" class="page-content space-y-6 hidden">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">Health Analytics</span></nav>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Patient Health Analytics</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900"><i class="fas fa-heartbeat text-blue-600 dark:text-blue-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Heart Rate</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">74 BPM</p><p class="text-xs text-green-600 dark:text-green-400">Normal Range</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-red-100 dark:bg-red-900"><i class="fas fa-tint text-red-600 dark:text-red-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Blood Pressure</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">118/78</p><p class="text-xs text-green-600 dark:text-green-400">Optimal</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-green-100 dark:bg-green-900"><i class="fas fa-weight text-green-600 dark:text-green-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Weight Trend</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">-2.1 kg</p><p class="text-xs text-green-600 dark:text-green-400">Improving</p></div></div></div>
+          <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 transition-colors duration-300"><div class="flex items-center"><div class="p-3 rounded-full bg-purple-100 dark:bg-purple-900"><i class="fas fa-chart-line text-purple-600 dark:text-purple-400"></i></div><div class="ml-4"><p class="text-sm font-medium text-gray-500 dark:text-gray-400">Risk Score</p><p class="text-2xl font-semibold text-gray-900 dark:text-white">Low</p><p class="text-xs text-green-600 dark:text-green-400">Decreased 15%</p></div></div></div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark;border-gray-700"><div class="flex items-center justify-between"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Patient Historical Data</h2><button id="toggle-analytics" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors"><i class="fas fa-chart-bar mr-2"></i>View More Data</button></div></div><div id="analytics-summary" class="p-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="text-center"><p class="text-sm text-gray-500 dark:text-gray-400">Patients Monitored</p><p class="text-xl font-semibold text-gray-900 dark:text-white">247</p></div><div class="text-center"><p class="text-sm text-gray-500 dark:text-gray-400">Critical Cases</p><p class="text-xl font-semibold text-red-600 dark:text-red-400">3</p></div><div class="text-center"><p class="text-sm text-gray-500 dark:text-gray-400">Recovery Rate</p><p class="text-xl font-semibold text-green-600 dark:text-green-400">94.2%</p></div></div></div><div id="analytics-details" class="hidden"><div class="overflow-x-auto"><table class="w-full"><thead class="bg-gray-50 dark:bg-gray-700"><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Patient</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Blood Pressure</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Weight</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Heart Rate</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Risk Level</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Last Updated</th></tr></thead><tbody class="divide-y divide-gray-200 dark:divide-gray-700"><tr><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Sarah Johnson</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">120/80</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">65.2 kg</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">72 BPM</td><td class="px-6 py-4"><span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full">Low</span></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 1, 2024</td></tr><tr><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">John Smith</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">135/85</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">78.5 kg</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">76 BPM</td><td class="px-6 py-4"><span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs rounded-full">Medium</span></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Jan 28, 2024</td></tr><tr><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Emma Davis</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">145/95</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">62.1 kg</td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">89 BPM</td><td class="px-6 py-4"><span class="px-2 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-xs rounded-full">High</span></td><td class="px-6 py-4 text-sm text-gray-900 dark:text-white">Feb 2, 2024</td></tr></tbody></table></div></div></div>
+      </div>
+      <div id="account-page" class="page-content space-y-6 hidden">
+        <nav class="text-sm text-gray-500 dark:text-gray-400"><span>Home</span> <i class="fas fa-chevron-right mx-2"></i> <span class="text-gray-800 dark:text-gray-200">Profile</span></nav>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Doctor Profile</h1>
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div class="xl:col-span-2"><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><div class="flex items-center justify-between"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Professional Information</h2><button class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"><i class="fas fa-edit text-xs"></i><span>Edit</span></button></div></div><div class="p-6 space-y-6"><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Full Name</label><p class="mt-1 text-gray-900 dark:text-white">Dr. Michael Chen</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Specialization</label><p class="mt-1 text-gray-900 dark:text-white">Cardiologist</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</label><p class="mt-1 text-gray-900 dark:text-white">dr.chen@medconnect.com</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone Number</label><p class="mt-1 text-gray-900 dark:text-white">+1 (555) 987-6543</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">License Number</label><p class="mt-1 text-gray-900 dark:text-white">MD-2024-001</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Years of Experience</label><p class="mt-1 text-gray-900 dark:text-white">15 years</p></div></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Professional Summary</label><p class="mt-1 text-gray-900 dark:text-white">Board-certified cardiologist with over 15 years of experience in treating cardiovascular diseases. Specialized in interventional cardiology and preventive heart care. Committed to providing comprehensive cardiac care using the latest medical technologies and evidence-based treatments.</p></div></div></div></div>
+          <div class="space-y-6"><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><div class="flex items-center justify-between"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Hospital Affiliation</h2><button class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"><i class="fas fa-edit text-xs"></i><span>Edit</span></button></div></div><div class="p-6 space-y-4"><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Primary Hospital</label><p class="mt-1 text-gray-900 dark:text-white">San Francisco General Hospital</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Department</label><p class="mt-1 text-gray-900 dark:text-white">Cardiology Department</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office Hours</label><p class="mt-1 text-gray-900 dark:text-white">Mon-Fri: 8:00 AM - 6:00 PM</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Office Location</label><p class="mt-1 text-gray-900 dark:text-white">Building A, Floor 3, Room 301</p></div></div></div><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm transition-colors duration-300"><div class="p-6 border-b border-gray-200 dark:border-gray-700"><div class="flex items-center justify-between"><h2 class="text-lg font-semibold text-gray-900 dark:text-white">Certifications</h2><button class="flex items-center space-x-2 px-3 py-1.5 text-sm text-primary border border-primary rounded-lg hover:bg-primary hover:text-white transition-colors"><i class="fas fa-edit text-xs"></i><span>Edit</span></button></div></div><div class="p-6 space-y-4"><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Board Certification</label><p class="mt-1 text-gray-900 dark:text-white">American Board of Internal Medicine - Cardiology</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Fellowship</label><p class="mt-1 text-gray-900 dark:text-white">Interventional Cardiology Fellowship</p></div><div><label class="text-sm font-medium text-gray-500 dark:text-gray-400">Medical School</label><p class="mt-1 text-gray-900 dark:text-white">Harvard Medical School</p></div></div></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const html=document.documentElement;const themeToggle=document.getElementById('theme-toggle');const themeIcon=document.getElementById('theme-icon');const currentTheme=localStorage.getItem('theme')||'light';html.classList.toggle('dark',currentTheme==='dark');updateThemeIcon(currentTheme);function updateThemeIcon(t){themeIcon.className=t==='dark'?'fas fa-sun text-yellow-500':'fas fa-moon text-gray-600 dark:text-gray-300'};themeToggle.addEventListener('click',()=>{const isDark=html.classList.contains('dark');const n=isDark?'light':'dark';html.classList.toggle('dark');localStorage.setItem('theme',n);updateThemeIcon(n)});
+    const navLinks=document.querySelectorAll('.nav-link');const pageContents=document.querySelectorAll('.page-content');function showPage(id){pageContents.forEach(p=>p.classList.add('hidden'));const t=document.getElementById(id+'-page');if(t)t.classList.remove('hidden');navLinks.forEach(l=>{l.classList.remove('bg-primary/20','text-green-200');l.classList.add('hover:bg-white/10')});const a=document.querySelector(`[data-page="${id}"]`);if(a){a.classList.add('bg-primary/20','text-green-200');a.classList.remove('hover:bg-white/10')}};navLinks.forEach(l=>{l.addEventListener('click',e=>{e.preventDefault();const id=l.getAttribute('data-page');if(id){showPage(id);if(window.innerWidth<1024)toggleMobileMenu();}})});
+    const mobileMenuBtn=document.getElementById('mobile-menu-btn');const sidebar=document.getElementById('sidebar');const mobileOverlay=document.getElementById('mobile-overlay');function toggleMobileMenu(){sidebar.classList.toggle('-translate-x-full');mobileOverlay.classList.toggle('hidden')};mobileMenuBtn.addEventListener('click',toggleMobileMenu);mobileOverlay.addEventListener('click',toggleMobileMenu);
+    const toggleAnalyticsBtn=document.getElementById('toggle-analytics');const analyticsSummary=document.getElementById('analytics-summary');const analyticsDetails=document.getElementById('analytics-details');if(toggleAnalyticsBtn){toggleAnalyticsBtn.addEventListener('click',()=>{const d=!analyticsDetails.classList.contains('hidden');if(d){analyticsDetails.classList.add('hidden');analyticsSummary.classList.remove('hidden');toggleAnalyticsBtn.innerHTML='<i class="fas fa-chart-bar mr-2"></i>View More Data'}else{analyticsDetails.classList.remove('hidden');analyticsSummary.classList.add('hidden');toggleAnalyticsBtn.innerHTML='<i class="fas fa-chart-line mr-2"></i>View Less Data'}})};
+    function downloadPrescription(p,m){alert(`Downloading prescription PDF for ${p} - ${m}. In a real application, this would generate and download a PDF file.`)}
+    document.addEventListener('click',e=>{const b=e.target.closest('button');if(b){const t=b.textContent.trim();if(t.includes('Add New Patient'))alert('Add New Patient form would open here.');else if(t.includes('Write Prescription'))alert('Prescription writing interface would open here.');else if(t.includes('Medical Notes'))alert('Medical notes interface would open here.');else if(t.includes('Schedule Follow-up'))alert('Follow-up scheduling interface would open here.');else if(t.includes('Edit')&&!t.includes('Write')&&!t.includes('Add'))alert('Edit functionality would be implemented here with a modal form.');else if(t.includes('Schedule Appointment'))alert('Appointment scheduling interface would open here.');else if(t.includes('Write New Prescription'))alert('New prescription interface would open here.');else if(t.includes('Add Patient'))alert('Patient registration form would open here.');else if(t.includes('View Schedule'))alert('Full schedule view would open here.')}});
+    const searchInput=document.querySelector('input[placeholder="Search patients..."]');if(searchInput){searchInput.addEventListener('keypress',function(e){if(e.key==='Enter'){alert(`Searching for patient: ${this.value}`)}})}
+    document.addEventListener('click',e=>{if(e.target.textContent==='View'){const row=e.target.closest('tr');const name=row.querySelector('.text-sm.font-medium').textContent;alert(`Opening detailed view for ${name}`)}});
+    function handleResize(){if(window.innerWidth>=1024){sidebar.classList.remove('-translate-x-full');mobileOverlay.classList.add('hidden')}else{sidebar.classList.add('-translate-x-full')}}window.addEventListener('resize',handleResize);handleResize();document.addEventListener('DOMContentLoaded',()=>{showPage('home')});
+  </script>
 </body>
-
 </html>
